@@ -6,8 +6,8 @@ app = Flask(__name__)
 
 @app.route('/')
 def index():
-    flight={'FilghtNum' : 'pippo'}
-    return render_template('index.html', flight=flight)
+    index = open("index.html").read().format(first_header='goodbye',p1='World',p2='Hello')
+    return render_template(index)
 
 
 
