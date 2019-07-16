@@ -7,7 +7,7 @@ app = Flask(__name__)
 @app.route('/')
 def index():
     dict = {'A' : '100', 'B' : '500'}
-    return render_template("index.html", **dict )
+    return render_template("index.html", dict=**dict )
 
 
 
