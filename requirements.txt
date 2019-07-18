@@ -4,7 +4,10 @@ gunicorn
 itsdangerous
 Jinja2
 peewee
+urllib.request
 Werkzeug
+datetime
 tabula
 numpy
 pandas
+re
