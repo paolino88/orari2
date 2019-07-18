@@ -38,11 +38,11 @@ def index():
             dict[int(t[0])].append(int(t[1]))
 
     time = datetime.datetime.now()
-    if time.hour in hour_min.keys():
-        for m in hour_min[time.hour]:
+    if time.hour in dict.keys():
+        for m in dict[time.hour]:
             if (time.minute < m):
                 delta_minute = m - time.minute
-                delta_minute_next = hour_min[time.hour + 1][0] + 60 - time.minute
+                delta_minute_next = dict[time.hour + 1][0] + 60 - time.minute
 
     return render_template("index.html", var1 = 'delta_minute' )
 
