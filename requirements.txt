@@ -5,3 +5,6 @@ itsdangerous
 Jinja2
 peewee
 Werkzeug
+Tabula
+numpy
+pandas
