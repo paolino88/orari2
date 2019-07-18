@@ -23,26 +23,22 @@ def build_dict(li):
     return dict
 
 def index():
-    urllib.request.urlretrieve(
-        'https://myeni.eni.com/it_IT/common/documents/Eni_per_noi/trasporti/spostamenti_casa_lavoro/sdm/invernale/arancio.pdf', 'arancio.pdf')
+    urllib.request.urlretrieve('https://myeni.eni.com/it_IT/common/documents/Eni_per_noi/trasporti/spostamenti_casa_lavoro/sdm/invernale/arancio.pdf', 'arancio.pdf')
     df = read_pdf('C:/Users/uid1031656/Desktop/arancio.pdf')
-    l1 = df.loc[[1]].replace(r'.* (\d+:\d+)', r'\1', regex=True).dropna(axis='columns').filter(regex=(".*A.*"),
-                                                                                               axis=1).values
-    l2 = df.loc[[10]].replace(r'.* (\d+:\d+)', r'\1', regex=True).dropna(axis='columns').filter(regex=("^A"),
-                                                                                                axis=1).values
+    l1 = df.loc[[1]].replace(r'.* (\d+:\d+)', r'\1', regex=True).dropna(axis='columns').filter(regex=(".*A.*"),axis=1).values
+    l2 = df.loc[[10]].replace(r'.* (\d+:\d+)', r'\1', regex=True).dropna(axis='columns').filter(regex=("^A"),axis=1).values
     li = np.concatenate((l1[0], l2[0]), axis=0)
+
     hour_min= build_dict(li)
 
     time = datetime.datetime.now()
-    if time.hour in dict.keys():
-        for m in dict[time.hour]:
+    if time.hour in hour_min.keys():
+        for m in hour_min[time.hour]:
             if (time.minute < m):
                 delta_minute = m - time.minute
-                delta_minute_next = dict[time.hour + 1][0] + 60 - time.minute
+                delta_minute_next = hour_min[time.hour + 1][0] + 60 - time.minute
 
     return render_template("index.html", var1=delta_minute,var2=delta_minute_next )
-
-
 
 
 
