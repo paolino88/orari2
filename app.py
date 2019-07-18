@@ -9,7 +9,6 @@ import os
 
 app = Flask(__name__)
 
-
 @app.route('/')
 
 #def build_dict(li):
@@ -44,8 +43,6 @@ def index():
                 delta_minute = m - time.minute
                 delta_minute_next = dict[time.hour + 1][0] + 60 - time.minute '''
 
-    return render_template("index.html", var1 = 'delta_minute' )
-
-
+    return render_template("index.html")
 
 if __name__ == '__main__': app.run(debug=True)
