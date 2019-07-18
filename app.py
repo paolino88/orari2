@@ -12,15 +12,15 @@ app = Flask(__name__)
 
 @app.route('/')
 
-def build_dict(li):
-    dict = {}
-    for el in li:
-        t = re.findall(r'\d+', el)
-        if not int(t[0]) in dict.keys():
-            dict[int(t[0])] = [int(t[1])]
-        else:
-            dict[int(t[0])].append(int(t[1]))
-    return dict
+#def build_dict(li):
+#    dict = {}
+#    for el in li:
+#        t = re.findall(r'\d+', el)
+#        if not int(t[0]) in dict.keys():
+#            dict[int(t[0])] = [int(t[1])]
+#        else:
+#            dict[int(t[0])].append(int(t[1]))
+#    return dict
 
 def index():
     urllib.request.urlretrieve('https://myeni.eni.com/it_IT/common/documents/Eni_per_noi/trasporti/spostamenti_casa_lavoro/sdm/invernale/arancio.pdf', 'arancio.pdf')
@@ -29,7 +29,13 @@ def index():
     l2 = df.loc[[10]].replace(r'.* (\d+:\d+)', r'\1', regex=True).dropna(axis='columns').filter(regex=("^A"),axis=1).values
     li = np.concatenate((l1[0], l2[0]), axis=0)
 
-    hour_min= build_dict(li)
+    dict = {}
+    for el in li:
+        t = re.findall(r'\d+', el)
+        if not int(t[0]) in dict.keys():
+            dict[int(t[0])] = [int(t[1])]
+        else:
+            dict[int(t[0])].append(int(t[1]))
 
     time = datetime.datetime.now()
     if time.hour in hour_min.keys():
@@ -38,7 +44,7 @@ def index():
                 delta_minute = m - time.minute
                 delta_minute_next = hour_min[time.hour + 1][0] + 60 - time.minute
 
-    return render_template("index.html", var1=delta_minute,var2=delta_minute_next )
+    return render_template("index.html", var1 = 'delta_minute' )
 
 
 
