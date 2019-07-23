@@ -54,7 +54,6 @@ def index():
             strin = 'NON CI SONO CORSE PER OGGI'
 
 
-
     return render_template("index.html", delta_minute=delta_minute,delta_minute_next=delta_minute_next, strin=strin)
 
 
