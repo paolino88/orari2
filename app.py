@@ -1,10 +1,10 @@
 from flask import Flask, render_template
 from tabula import read_pdf
-#import urllib.request
-#import pandas as pd
-#import numpy as np
-#import datetime
-#import re
+import urllib.request
+import pandas as pd
+import numpy as np
+import datetime
+import re
 
 
 app = Flask(__name__)
