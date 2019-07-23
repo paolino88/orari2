@@ -6,8 +6,6 @@ import datetime
 import re
 
 
-
-
 urllib.request.urlretrieve(
     'https://myeni.eni.com/it_IT/common/documents/Eni_per_noi/trasporti/spostamenti_casa_lavoro/sdm/invernale/arancio.pdf',
     'arancio.pdf')
@@ -26,10 +24,27 @@ for el in li:
         dict[int(t[0])].append(int(t[1]))
 
 time = datetime.datetime.now()
+
 if time.hour in dict.keys():
     for m in dict[time.hour]:
         if (time.minute < m):
             delta_minute = m - time.minute
-            delta_minute_next = dict[time.hour + 1][0] + 60 - time.minute
-            print(delta_minute)
-            print(delta_minute_next)
+            list_min=[item for item in dict[time.hour] if time.minute < item]
+            if(len(list_min) == 1):
+                delta_minute_next = dict[time.hour + 1][0] + 60 - time.minute
+            else:
+                delta_minute_next = dict[time.hour][1] - time.minute
+        elif(m == max(dict[time.hour])):
+            delta_minute = dict[time.hour + 1][0] + 60  - time.minute
+            delta_minute_next = dict[time.hour + 1][1] + 60 - time.minute
+
+    print('1',delta_minute)
+    print('2',delta_minute_next)
+else:
+    if(time.hour < min(dict.keys())):
+        hh=min(dict.keys()) - time.hour
+        delta_minute = hh*60 - time.minute +  min(dict[min(dict.keys())])
+        print(delta_minute)
+    else:
+        strin='NON CI SONO CORSE PER OGGI'
+        print(strin)
