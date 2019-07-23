@@ -31,7 +31,7 @@ def index():
             dict[int(t[0])].append(int(t[1]))
 
     time = datetime.datetime.now()
-
+    strin = ''
     if time.hour in dict.keys():
         for m in dict[time.hour]:
             if (time.minute < m):
@@ -49,12 +49,11 @@ def index():
         if (time.hour < min(dict.keys())):
             hh = min(dict.keys()) - time.hour
             delta_minute = hh * 60 - time.minute + min(dict[min(dict.keys())])
-
         else:
             strin = 'NON CI SONO CORSE PER OGGI'
 
 
-    return render_template("index.html", delta_minute=delta_minute,delta_minute_next=delta_minute_next, strin=strin)
+    return render_template("index.html", delta_minute=delta_minute,delta_minute_next=delta_minute_next,strin=strin)
 
 
 if __name__ == '__main__':
