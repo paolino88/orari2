@@ -1,4 +1,4 @@
-from flask import Flask, render_template, tabula import read_pdf
+from flask import Flask, render_template, tabula
 #from tabula import read_pdf
 #import urllib.request
 #import pandas as pd
