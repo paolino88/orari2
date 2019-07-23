@@ -15,7 +15,7 @@ def index():
     urllib.request.urlretrieve(
         'https://myeni.eni.com/it_IT/common/documents/Eni_per_noi/trasporti/spostamenti_casa_lavoro/sdm/invernale/arancio.pdf',
         'arancio.pdf')
-    df = read_pdf('C:/Users/uid1031656/Desktop/arancio.pdf')
+    df = read_pdf('arancio.pdf')
     l1 = df.loc[[1]].replace(r'.* (\d+:\d+)', r'\1', regex=True).dropna(axis='columns').filter(regex=(".*A.*"),
                                                                                                axis=1).values
     l2 = df.loc[[10]].replace(r'.* (\d+:\d+)', r'\1', regex=True).dropna(axis='columns').filter(regex=("^A"),
