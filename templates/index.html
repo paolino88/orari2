@@ -14,8 +14,11 @@
 
 
         {%for i in range(0,10)%}
-
-            <li>{{delta_minute}} e {{delta_minute_next}}</li>
+            {% if tup|length > 1 %}
+                <li>{{tup|min}} e {{tup|max}}</li>
+            {% else %}
+                <li> {{tup[0]}} </li>
+            {% endif %}
         {%endfor%}
 
 

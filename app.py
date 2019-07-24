@@ -31,32 +31,45 @@ def index():
             dict[int(t[0])].append(int(t[1]))
 
     time = datetime.datetime.now()
-    strin = ''
+    tup = []
     hour = time.hour
     minute = time.minute
 
     if hour in dict.keys():
-        for m in dict[hour]:
-            if (minute < m):
-                delta_minute = m - minute
-                list_min = [item for item in dict[hour] if minute < item]
-                if (len(list_min) == 1):
-                    delta_minute_next = dict[hour + 1][0] + 60 - minute
-                else:
-                    delta_minute_next = dict[hour][1] - minute
-            elif (m == max(dict[hour])):
+        list_min = [item for item in dict[hour] if minute < item]
+        if (len(list_min) == 1):
+            if(hour == max(dict.keys())):
+                delta_minute = list_min[0] - minute
+                tup.append(delta_minute)
+            else:
+                delta_minute = list_min[0] - minute
+                tup.append(delta_minute)
+                delta_minute_next = dict[hour + 1][0] + 60 - minute
+                tup.append(delta_minute_next)
+        elif(len(list_min) > 1):
+            delta_minute = list_min[0] - minute
+            tup.append(delta_minute)
+            delta_minute_next = list_min[1] - minute
+            tup.append(delta_minute_next)
+        else:
+            if(hour == max(dict.keys())):
+                delta_minute = 'NON CI SONO CORSE PER OGGI'
+                tup.append(delta_minute)
+            else:
                 delta_minute = dict[hour + 1][0] + 60 - minute
+                tup.append(delta_minute)
                 delta_minute_next = dict[hour + 1][1] + 60 - minute
-
+                tup.append(delta_minute_next)
     else:
         if (hour < min(dict.keys())):
             hh = min(dict.keys()) - hour
-            delta_minute = hh * 60 - minute + min(dict[min(dict.keys())])
+            delta_minute = 'INIZIA TRA ' + str(hh * 60 - minute + min(dict[min(dict.keys())])) + ' minuti'
+            tup.append(delta_minute)
         else:
-            strin = 'NON CI SONO CORSE PER OGGI'
+            delta_minute = 'NON CI SONO CORSE PER OGGI'
+            tup.append(delta_minute)
 
-
-    return render_template("index.html", delta_minute=delta_minute,delta_minute_next=delta_minute_next,strin=strin)
+    return render_template("index.html", tup=tup)
 
 
 if __name__ == '__main__':
