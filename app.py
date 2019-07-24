@@ -35,6 +35,7 @@ def index():
     hour = time.hour
     minute = time.minute
 
+
     if hour in dict.keys():
         list_min = [item for item in dict[hour] if minute < item]
         if (len(list_min) == 1):
