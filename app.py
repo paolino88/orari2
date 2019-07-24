@@ -32,23 +32,26 @@ def index():
 
     time = datetime.datetime.now()
     strin = ''
-    if time.hour in dict.keys():
-        for m in dict[time.hour]:
-            if (time.minute < m):
-                delta_minute = m - time.minute
-                list_min = [item for item in dict[time.hour] if time.minute < item]
+    hour = time.hour
+    minute = time.minute
+
+    if hour in dict.keys():
+        for m in dict[hour]:
+            if (minute < m):
+                delta_minute = m - minute
+                list_min = [item for item in dict[hour] if minute < item]
                 if (len(list_min) == 1):
-                    delta_minute_next = dict[time.hour + 1][0] + 60 - time.minute
+                    delta_minute_next = dict[hour + 1][0] + 60 - minute
                 else:
-                    delta_minute_next = dict[time.hour][1] - time.minute
-            elif (m == max(dict[time.hour])):
-                delta_minute = dict[time.hour + 1][0] + 60 - time.minute
-                delta_minute_next = dict[time.hour + 1][1] + 60 - time.minute
+                    delta_minute_next = dict[hour][1] - minute
+            elif (m == max(dict[hour])):
+                delta_minute = dict[hour + 1][0] + 60 - minute
+                delta_minute_next = dict[hour + 1][1] + 60 - minute
 
     else:
-        if (time.hour < min(dict.keys())):
-            hh = min(dict.keys()) - time.hour
-            delta_minute = hh * 60 - time.minute + min(dict[min(dict.keys())])
+        if (hour < min(dict.keys())):
+            hh = min(dict.keys()) - hour
+            delta_minute = hh * 60 - minute + min(dict[min(dict.keys())])
         else:
             strin = 'NON CI SONO CORSE PER OGGI'
 
