@@ -12,12 +12,12 @@
         <p> </p>
         <h1 style="color:orange;" id="tittle"> ORARI NAVETTA ARANCIO VIA EMILIA - BOLGIANO</h1>
 
-        <h2></h2>
+        <h2>{{hour}} and {{minute}}/h2>
 
         {% if tup|length > 1 %}
             <p style="font-size:30px"> Arrivo tra {{tup|min}} min e successiva tra {{tup|max}} min</p>
         {% else %}
-            <p> {{tup[0]}} </p>
+            <p style="font-size:30px" > {{tup[0]}} </p>
         {% endif %}
 
 

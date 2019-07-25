@@ -70,7 +70,7 @@ def index():
             delta_minute = 'NON CI SONO CORSE PER OGGI'
             tup.append(delta_minute)
 
-    return render_template("index.html", tup=tup)
+    return render_template("index.html", tup=tup, hour=hour, minute=minute)
 
 
 if __name__ == '__main__':
