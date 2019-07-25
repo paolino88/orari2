@@ -32,7 +32,7 @@ def index():
 
     time = datetime.datetime.now()
     tup = []
-    hour = 20#time.hour
+    hour = 7#time.hour
     minute = 22#time.minute
 
 
