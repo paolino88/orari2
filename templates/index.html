@@ -15,7 +15,8 @@
         <h2>{{var}}</h2>
 
         {% if tup|length > 1 %}
-            <p style="font-size:30px"> Arrivo tra {{tup|min}} min e successiva tra {{tup|max}} min</p>
+            <p style="font-size:30px"> Prima navetta disponibile tra: {{tup|min}} min </p>
+        <p style="font-size:30px"> Seconda navetta disponibile tra: {{tup|max}} min </p>
         {% else %}
             <p style="font-size:30px" > {{tup[0]}} </p>
         {% endif %}
