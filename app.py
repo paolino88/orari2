@@ -1,4 +1,4 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, url_for
 from tabula import read_pdf
 import urllib.request
 import pandas as pd
@@ -32,8 +32,8 @@ def index():
 
     time = datetime.datetime.now()
     tup = []
-    hour = 23#time.hour
-    minute = 12#time.minute
+    hour = time.hour
+    minute = time.minute
 
 
     if hour in dict.keys():
@@ -64,7 +64,7 @@ def index():
     else:
         if (hour < min(dict.keys())):
             hh = min(dict.keys()) - hour
-            delta_minute = 'INIZIA TRA ' + str(hh * 60 - minute + min(dict[min(dict.keys())])) + ' minuti'
+            delta_minute = 'INIZIA TRA ' + str(hh * 60 - minute + min(dict[min(dict.keys())])) + ' min'
             tup.append(delta_minute)
         else:
             delta_minute = 'NON CI SONO CORSE PER OGGI'

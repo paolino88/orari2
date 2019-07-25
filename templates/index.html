@@ -7,20 +7,19 @@
         
     </head>
     <body>
-        <p> ************************************************************</p>
-        <h1 id="tittle">ORARI NAVETTA ARANCIO VIA EMILIA---->BOLGIANO</h1>
+        <body bgcolor="AliceBlue">
+        <img src="{{url_for('static', filename='eni.jpg')}}" >
+        <p> </p>
+        <h1 style="color:orange;" id="tittle"> ORARI NAVETTA ARANCIO VIA EMILIA - BOLGIANO</h1>
 
-        <h2>IN ARRIVO TRA </h2>
+        <h2></h2>
 
+        {% if tup|length > 1 %}
+            <p style="font-size:30px"> Arrivo tra {{tup|min}} min e successiva tra {{tup|max}} min</p>
+        {% else %}
+            <p> {{tup[0]}} </p>
+        {% endif %}
 
-
-        {%for i in range(0,10)%}
-            {% if tup|length > 1 %}
-                <li>{{tup|min}} e {{tup|max}}</li>
-            {% else %}
-                <li> {{tup[0]}} </li>
-            {% endif %}
-        {%endfor%}
 
 
         <p>
