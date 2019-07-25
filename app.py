@@ -30,6 +30,7 @@ def index():
         else:
             dict[int(t[0])].append(int(t[1]))
 
+
     time = datetime.datetime.now()
     tup = []
     hour = time.hour
