@@ -32,8 +32,8 @@ def index():
 
     time = datetime.datetime.now()
     tup = []
-    hour = time.hour
-    minute = time.minute
+    hour = 20#time.hour
+    minute = 22#time.minute
 
 
     if hour in dict.keys():
