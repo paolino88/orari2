@@ -66,8 +66,8 @@ def index():
 
     time = datetime.datetime.now()
     tup = []
-    hour = time.hour
-    minute = time.minute
+    hour = 5#time.hour
+    minute = 53#time.minute
 
 
     if hour in dict.keys():
@@ -92,16 +92,31 @@ def index():
                 delta_minute = 'NON CI SONO CORSE PER OGGI'
                 tup.append(delta_minute)
             else:
-                delta_minute = min(dict[hour + 1]) + 60 - minute
-                tup.append(delta_minute)
-                dict[hour + 1].remove(min(dict[hour + 1]))
-                delta_minute_next = min(dict[hour + 1]) + 60 - minute
-                tup.append(delta_minute_next)
+                if(len(dict[hour + 1]) > 1):
+                    delta_minute = min(dict[hour + 1]) + 60 - minute
+                    tup.append(delta_minute)
+                    dict[hour + 1].remove(min(dict[hour + 1]))
+                    delta_minute_next = min(dict[hour + 1]) + 60 - minute
+                    tup.append(delta_minute_next)
+                elif(hour + 1 < max(dict.keys())):
+                    delta_minute = 'UNICA CORSA DELLA FASCIA ORARIA ' + str(hour + 1) + 'TRA ' + \
+                                                                str(min(dict[hour + 1]) + 60 - minute) + ' min'
+                    tup.append(delta_minute)
+                else:
+                    delta_minute = 'ULTIMA CORSA DEL GIORNO TRA ' + \
+                                                                str(min(dict[hour + 1]) + 60 - minute) + ' min'
+                    tup.append(delta_minute)
+
     else:
         if (hour < min(dict.keys())):
             hh = min(dict.keys()) - hour
-            delta_minute = 'INIZIA TRA ' + str(hh * 60 - minute + min(dict[min(dict.keys())])) + ' min'
-            tup.append(delta_minute)
+            if(hh < 1):
+                delta_minute = 'IL SERVIZIO INIZIA TRA ' + str(hh * 60 - minute + min(dict[min(dict.keys())])) + ' min'
+                tup.append(delta_minute)
+            else:
+                delta_minute = 'IL SERVIZIO INIZIA ALLE ' + str(min(dict.keys())) + ':' + \
+                                            str(min(dict[min(dict.keys())]))
+                tup.append(delta_minute)
         else:
             delta_minute = 'NON CI SONO CORSE PER OGGI'
             tup.append(delta_minute)
