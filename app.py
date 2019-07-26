@@ -36,7 +36,7 @@ def index():
     num_month = time.month
     num_day = today.weekday() + 1
 
-    if (num_month < 5 and num_month > 9):
+    if (num_month < 5 or num_month > 9):
         urllib.request.urlretrieve(
             'https://myeni.eni.com/it_IT/common/documents/Eni_per_noi/trasporti/spostamenti_casa_lavoro/sdm/invernale/arancio.pdf',
             'arancio.pdf')
@@ -46,7 +46,7 @@ def index():
         l2 = df.loc[[10]].replace(r'.* (\d+:\d+)', r'\1', regex=True).dropna(axis='columns').filter(regex=("^A"),
                                                                                                      axis=1).values
         var='ORARIO INVERNALE'
-    else:
+    elif(num_day != 5):
         urllib.request.urlretrieve(
             'https://myeni.eni.com/it_IT/common/documents/Eni_per_noi/trasporti/spostamenti_casa_lavoro/sdm/estivo/arancio.pdf',
             'arancio.pdf')
@@ -56,6 +56,16 @@ def index():
         l2 = df.loc[[14]].replace(r'.* (\d+:\d+)', r'\1', regex=True).dropna(axis='columns').filter(regex=("^R"),
                                                                                                     axis=1).values
         var='ORARIO ESTIVO'
+    else:
+        urllib.request.urlretrieve(
+            'https://myeni.eni.com/it_IT/common/documents/Eni_per_noi/trasporti/spostamenti_casa_lavoro/sdm/estivo/arancio.pdf',
+            'arancio.pdf')
+        df = read_pdf('arancio.pdf')
+        l1 = df.loc[[21]].replace(r'.* (\d{2}:\d{2})', r'\1', regex=True).dropna(axis='columns').filter(regex=(".*A.*"),
+                                                                                                        axis=1).values
+        l2 = df.loc[[33]].replace(r'.* (\d+:\d+)', r'\1', regex=True).dropna(axis='columns').filter(regex=("^R"),
+                                                                                                    axis=1).values
+        var='VENERDI\' ESTIVO - ORARIO RIDOTTO'
 
     l11 = schedul(l1)
     l22 = schedul(l2)
@@ -66,8 +76,8 @@ def index():
 
     time = datetime.datetime.now()
     tup = []
-    hour = 5#time.hour
-    minute = 53#time.minute
+    hour = time.hour
+    minute = time.minute
 
 
     if hour in dict.keys():
@@ -110,12 +120,12 @@ def index():
     else:
         if (hour < min(dict.keys())):
             hh = min(dict.keys()) - hour
-            if(hh < 1):
+            if(hh < 2):
                 delta_minute = 'IL SERVIZIO INIZIA TRA ' + str(hh * 60 - minute + min(dict[min(dict.keys())])) + ' min'
                 tup.append(delta_minute)
             else:
-                delta_minute = 'IL SERVIZIO INIZIA ALLE ' + str(min(dict.keys())) + ':' + \
-                                            str(min(dict[min(dict.keys())]))
+                M = min(dict[min(dict.keys())])
+                delta_minute = 'IL SERVIZIO INIZIA ALLE ' + str(datetime.time(min(dict.keys()),M).strftime("%H:%M"))
                 tup.append(delta_minute)
         else:
             delta_minute = 'NON CI SONO CORSE PER OGGI'
