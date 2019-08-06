@@ -85,7 +85,7 @@ def andata():
             list_min = [item for item in dict[hour] if minute < item]
             if (len(list_min) == 1):
                 if(hour == max(dict.keys())):
-                    delta_minute = list_min[0] - minute
+                    delta_minute =  'ULTIMA CORSA DEL GIORNO TRA ' + str(list_min[0] - minute) + ' min'
                     tup.append(delta_minute)
                 else:
                     delta_minute = list_min[0] - minute
@@ -110,12 +110,10 @@ def andata():
                         delta_minute_next = min(dict[hour + 1]) + 60 - minute
                         tup.append(delta_minute_next)
                     elif(hour + 1 < max(dict.keys())):
-                        delta_minute = 'UNICA CORSA DELLA FASCIA ORARIA ' + str(hour + 1) + 'TRA ' + \
-                                                                str(min(dict[hour + 1]) + 60 - minute) + ' min'
+                        delta_minute = 'UNICA CORSA DELLE ORE' + str(hour + 1) + 'TRA ' + str(min(dict[hour + 1]) + 60 - minute) + ' min'
                         tup.append(delta_minute)
                     else:
-                        delta_minute = 'ULTIMA CORSA DEL GIORNO TRA ' + \
-                                                                str(min(dict[hour + 1]) + 60 - minute) + ' min'
+                        delta_minute = 'ULTIMA CORSA DEL GIORNO TRA ' + str(min(dict[hour + 1]) + 60 - minute) + ' min'
                         tup.append(delta_minute)
 
         else:
@@ -214,7 +212,7 @@ def ritorno():
             list_min = [item for item in dict[hour] if minute < item]
             if (len(list_min) == 1):
                 if(hour == max(dict.keys())):
-                    delta_minute = list_min[0] - minute
+                    delta_minute = 'ULTIMA CORSA DEL GIORNO TRA ' + str(list_min[0] - minute) + ' min'
                     tup.append(delta_minute)
                 else:
                     delta_minute = list_min[0] - minute
@@ -239,7 +237,7 @@ def ritorno():
                         delta_minute_next = min(dict[hour + 1]) + 60 - minute
                         tup.append(delta_minute_next)
                     elif(hour + 1 < max(dict.keys())):
-                        delta_minute = 'UNICA CORSA DELLA FASCIA ORARIA ' + str(hour + 1) + 'TRA ' + \
+                        delta_minute = 'UNICA CORSA DELLE ORE ' + str(hour + 1) + 'TRA ' + \
                                                                 str(min(dict[hour + 1]) + 60 - minute) + ' min'
                         tup.append(delta_minute)
                     else:
