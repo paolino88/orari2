@@ -6,6 +6,7 @@ div.row1 {
     border: 5px solid #ffd700;
     font-family: Arial, Helvetica, sans-serif;
     text-align: center;
+    box-shadow: 5px 10px 50px #FFC107;
 }
 
 * {
