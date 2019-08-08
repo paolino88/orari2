@@ -11,7 +11,7 @@ app = Flask(__name__)
 
 @app.route('/andata')
 def andata():
-    direction = 'NAVETTA ARANCIO DIREZIONE VIA EMILIA - BOLGIANO'
+    direction = 'VIA EMILIA - BOLGIANO'
     def schedul(l1):
         l11 = np.array([])
         for i in range(l1.shape[1]):
@@ -138,7 +138,7 @@ def andata():
 
 @app.route('/ritorno')
 def ritorno():
-    direction = 'NAVETTA ARANCIO DIREZIONE BOLGIANO - VIA EMILIA'
+    direction = 'BOLGIANO - VIA EMILIA'
     def schedul(l1):
         l11 = np.array([])
         for i in range(l1.shape[1]):
