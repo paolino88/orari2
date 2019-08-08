@@ -29,10 +29,12 @@ a.a1:link, a.a1:visited {
   text-align: center;
   text-decoration: none;
   display: table;
+  margin: auto;
 }
 
 a.a1:hover, a.a1:active {
   background-color: orange;
+  margin: auto;
 }
 
 
