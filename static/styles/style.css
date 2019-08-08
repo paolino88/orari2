@@ -41,6 +41,10 @@ h1.title {
     color: orange;
 }
 
+div.img{
+    float: left;
+    margin: 20px 15px 15px 20px;"
+}
 
 * {
     padding: 0 ;
