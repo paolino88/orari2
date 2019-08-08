@@ -39,7 +39,8 @@ a.a1:hover, a.a1:active {
 
 
 * {
-    padding: 0 0;
-    margin: 0 0;
+    padding: 0 ;
+    margin: 0 ;
+    border: 0;
 }
 
