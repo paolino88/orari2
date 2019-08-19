@@ -43,13 +43,12 @@ h1.title {
 
 div.img{
     margin: 20px 15px 15px 20px;
+    width: 50%;
 }
 
 
-div.img_link{
-    font-size: 20px";
-    height: 6px;
-    width: 18px;
+div.link{
+    font-size: 30px;
 }
 
 
