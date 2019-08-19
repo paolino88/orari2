@@ -42,14 +42,12 @@
 
         {% if tup|length > 1 %}
             <center>
-                <div class="link">
-                    <p>1° <img src="/static/arancio-bus.jpg" width="70"/> in: {{tup|min}} min </p><br>
-                    <p>2° <img src="/static/arancio-bus.jpg"  width="70"/> in: {{tup|max}} min </p>
+                    <p  style="font-size:30px" >1° <img src="/static/arancio-bus.jpg" width="70"/> in: {{tup|min}} min </p><br>
+                    <p  style="font-size:30px" >2° <img src="/static/arancio-bus.jpg"  width="70"/> in: {{tup|max}} min </p>
             </center>
-                </div>
         {% else %}
             <center>
-                <p style="font-size:30px" > {{tup[0]}} </p>
+                <p  style="font-size:30px" > {{tup[0]}} </p>
             </center>
         {% endif %}
     </body>
