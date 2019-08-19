@@ -25,7 +25,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         
     </head>
-    <body bgcolor="AliceBlue">
+    <body>
         <p></p>
         <center>
             <h1 class="title">
@@ -41,8 +41,10 @@
 
 
         {% if tup|length > 1 %}
-            <p style="font-size:20px"> Prima navetta disponibile tra: {{tup|min}} min </p>
-            <p style="font-size:20px"> Seconda navetta disponibile tra: {{tup|max}} min </p>
+            <div class="img_link">
+                <p>1° <img src="/static/Eni.jpg"> in: {{tup|min}} min </p>
+                <p>2° <img src="/static/Eni.jpg"> in: {{tup|max}} min </p>
+            </div>
         {% else %}
             <p style="font-size:30px" > {{tup[0]}} </p>
         {% endif %}
