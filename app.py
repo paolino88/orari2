@@ -77,8 +77,8 @@ def andata():
 
         time = datetime.datetime.now()
         tup = []
-        hour = 20#time.hour
-        minute = 21#time.minute
+        hour = time.hour
+        minute = time.minute
 
 
         if hour in dict.keys():
@@ -110,28 +110,29 @@ def andata():
                         delta_minute_next = min(dict[hour + 1]) + 60 - minute
                         tup.append(delta_minute_next)
                     elif(hour + 1 < max(dict.keys())):
-                        delta_minute = 'UNICA CORSA DELLE ORE' + str(hour + 1) + 'TRA ' + str(min(dict[hour + 1]) + 60 - minute) + ' min'
+                        delta_minute = 'The only one in this hour in ' + str(hour + 1) + 'TRA ' + str(min(dict[hour + 1]) + 60 - minute) + ' min'
                         tup.append(delta_minute)
                     else:
-                        delta_minute = 'ULTIMA CORSA DEL GIORNO TRA ' + str(min(dict[hour + 1]) + 60 - minute) + ' min'
+                        delta_minute = 'The Last one in ' + str(min(dict[hour + 1]) + 60 - minute) + ' min'
                         tup.append(delta_minute)
 
         else:
             if (hour < min(dict.keys())):
                 hh = min(dict.keys()) - hour
                 if(hh < 2):
-                    delta_minute = 'IL SERVIZIO INIZIA TRA ' + str(hh * 60 - minute + min(dict[min(dict.keys())])) + ' min'
+                    delta_minute = 'Start in ' + str(hh * 60 - minute + min(dict[min(dict.keys())])) + ' min'
                     tup.append(delta_minute)
                 else:
                     M = min(dict[min(dict.keys())])
-                    delta_minute = 'IL SERVIZIO INIZIA ALLE ' + str(datetime.time(min(dict.keys()),M).strftime("%H:%M"))
+                    delta_minute = 'Start at ' + str(datetime.time(min(dict.keys()),M).strftime("%H:%M"))
                     tup.append(delta_minute)
             else:
                 delta_minute = "Finish"#'NON CI SONO CORSE PER OGGI'
                 tup.append(delta_minute)
     else:
         tup=[]
-        var = 'Il servizio riprendera\' il primo giorno feriale utile'
+        delta_minute = 'Stop'
+        tup.append(delta_minute)
     return render_template("orari.html", tup=tup, var=var, direction=direction)
 
 
@@ -204,8 +205,8 @@ def ritorno():
 
         time = datetime.datetime.now()
         tup = []
-        hour = 20#time.hour
-        minute = 21#time.minute
+        hour = time.hour
+        minute = time.minute
 
 
         if hour in dict.keys():
@@ -237,11 +238,11 @@ def ritorno():
                         delta_minute_next = min(dict[hour + 1]) + 60 - minute
                         tup.append(delta_minute_next)
                     elif(hour + 1 < max(dict.keys())):
-                        delta_minute = 'UNICA CORSA DELLE ORE ' + str(hour + 1) + 'TRA ' + \
+                        delta_minute = 'The only one in this hour in ' + str(hour + 1) + 'TRA ' + \
                                                                 str(min(dict[hour + 1]) + 60 - minute) + ' min'
                         tup.append(delta_minute)
                     else:
-                        delta_minute = 'ULTIMA CORSA DEL GIORNO TRA ' + \
+                        delta_minute = 'The Last one in ' + \
                                                                 str(min(dict[hour + 1]) + 60 - minute) + ' min'
                         tup.append(delta_minute)
 
@@ -249,18 +250,19 @@ def ritorno():
             if (hour < min(dict.keys())):
                 hh = min(dict.keys()) - hour
                 if(hh < 2):
-                    delta_minute = 'IL SERVIZIO INIZIA TRA ' + str(hh * 60 - minute + min(dict[min(dict.keys())])) + ' min'
+                    delta_minute = 'Start in ' + str(hh * 60 - minute + min(dict[min(dict.keys())])) + ' min'
                     tup.append(delta_minute)
                 else:
                     M = min(dict[min(dict.keys())])
-                    delta_minute = 'IL SERVIZIO INIZIA ALLE ' + str(datetime.time(min(dict.keys()),M).strftime("%H:%M"))
+                    delta_minute = 'Start at ' + str(datetime.time(min(dict.keys()),M).strftime("%H:%M"))
                     tup.append(delta_minute)
             else:
                 delta_minute = "Finish"#'NON CI SONO CORSE PER OGGI'
                 tup.append(delta_minute)
     else:
         tup=[]
-        var = 'Il servizio riprendera\' il primo giorno feriale utile'
+        delta_minute = 'Stop'
+        tup.append(delta_minute)
     return render_template("orari.html", tup=tup, var=var, direction=direction)
 
 
