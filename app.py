@@ -77,8 +77,8 @@ def andata():
 
         time = datetime.datetime.now()
         tup = []
-        hour = time.hour
-        minute = time.minute
+        hour = 20#time.hour
+        minute = 21#time.minute
 
 
         if hour in dict.keys():
@@ -204,8 +204,8 @@ def ritorno():
 
         time = datetime.datetime.now()
         tup = []
-        hour = time.hour
-        minute = time.minute
+        hour = 20#time.hour
+        minute = 21#time.minute
 
 
         if hour in dict.keys():
