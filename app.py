@@ -100,7 +100,7 @@ def andata():
                 tup.append(delta_minute_next)
             else:
                 if(hour == max(dict.keys())):
-                    delta_minute = 'NON CI SONO CORSE PER OGGI'
+                    delta_minute = "Finish"#'NON CI SONO CORSE PER OGGI'
                     tup.append(delta_minute)
                 else:
                     if(len(dict[hour + 1]) > 1):
@@ -127,7 +127,7 @@ def andata():
                     delta_minute = 'IL SERVIZIO INIZIA ALLE ' + str(datetime.time(min(dict.keys()),M).strftime("%H:%M"))
                     tup.append(delta_minute)
             else:
-                delta_minute = 'NON CI SONO CORSE PER OGGI'
+                delta_minute = "Finish"#'NON CI SONO CORSE PER OGGI'
                 tup.append(delta_minute)
     else:
         tup=[]
@@ -227,7 +227,7 @@ def ritorno():
                 tup.append(delta_minute_next)
             else:
                 if(hour == max(dict.keys())):
-                    delta_minute = 'NON CI SONO CORSE PER OGGI'
+                    delta_minute = "Finish"#'NON CI SONO CORSE PER OGGI'
                     tup.append(delta_minute)
                 else:
                     if(len(dict[hour + 1]) > 1):
@@ -256,7 +256,7 @@ def ritorno():
                     delta_minute = 'IL SERVIZIO INIZIA ALLE ' + str(datetime.time(min(dict.keys()),M).strftime("%H:%M"))
                     tup.append(delta_minute)
             else:
-                delta_minute = 'NON CI SONO CORSE PER OGGI'
+                delta_minute = "Finish"#'NON CI SONO CORSE PER OGGI'
                 tup.append(delta_minute)
     else:
         tup=[]

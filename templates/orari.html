@@ -45,6 +45,10 @@
                 <p  style="font-size:30px" >1° <img src="/static/arancio-bus.jpg" width="70"/> in: {{tup|min}} min </p><br>
                 <p  style="font-size:30px" >2° <img src="/static/arancio-bus.jpg"  width="70"/> in: {{tup|max}} min </p>
             </center>
+        {% elif tup[0] == "Finish" %}
+            <center>
+                <p  <img src="/static/arancio-finish.jpg" width="150"/> </p>
+            </center>
         {% else %}
             <center>
                 <p  style="font-size:30px" > {{tup[0]}} </p>
