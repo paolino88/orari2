@@ -51,6 +51,11 @@ div.link{
     font-size: 30px;
 }
 
+div.br {
+   display: block;
+   margin: 15px 0;
+}
+
 
 * {
     padding: 0 ;
