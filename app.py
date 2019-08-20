@@ -9,7 +9,7 @@ import re
 
 app = Flask(__name__)
 
-@app.route('/andata')
+@app.route('/arancio_andata')
 def andata():
     direction = 'VIA EMILIA - BOLGIANO'
     def schedul(l1):
@@ -130,14 +130,15 @@ def andata():
                 delta_minute = "Finish"#'NON CI SONO CORSE PER OGGI'
                 tup.append(delta_minute)
     else:
+        var=''
         tup=[]
         delta_minute = 'Stop'
         tup.append(delta_minute)
-    return render_template("orari.html", tup=tup, var=var, direction=direction)
+    return render_template("orari_arancio.html", tup=tup, var=var, direction=direction)
 
 
 
-@app.route('/ritorno')
+@app.route('/arancio_ritorno')
 def ritorno():
     direction = 'BOLGIANO - VIA EMILIA'
     def schedul(l1):
@@ -260,10 +261,11 @@ def ritorno():
                 delta_minute = "Finish"#'NON CI SONO CORSE PER OGGI'
                 tup.append(delta_minute)
     else:
+        var=''
         tup=[]
         delta_minute = 'Stop'
         tup.append(delta_minute)
-    return render_template("orari.html", tup=tup, var=var, direction=direction)
+    return render_template("orari_arancio.html", tup=tup, var=var, direction=direction)
 
 
 
