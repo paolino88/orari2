@@ -36,16 +36,16 @@ a.a1:hover, a.a1:active {
 }
 
 
-a.a2:link, a.a1:visited {
+a.a2:link, a.a2:visited {
   background-color: #ff0000;
   color: white;
-  padding: 25px 100px;
+  padding: 25px 102px;
   text-align: center;
   text-decoration: none;
   display: table;
 }
 
-a.a2:hover, a.a1:active {
+a.a2:hover, a.a2:active {
   background-color: red;
   margin: auto;
 }

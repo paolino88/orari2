@@ -10,7 +10,7 @@ import re
 app = Flask(__name__)
 
 @app.route('/arancio_andata')
-def andata():
+def arancio_andata():
     direction = 'VIA EMILIA - BOLGIANO'
     def schedul(l1):
         l11 = np.array([])
@@ -139,7 +139,7 @@ def andata():
 
 
 @app.route('/arancio_ritorno')
-def ritorno():
+def arancio_ritorno():
     direction = 'BOLGIANO - VIA EMILIA'
     def schedul(l1):
         l11 = np.array([])
@@ -278,7 +278,7 @@ def ritorno():
 
 
 @app.route('/rossa_andata')
-def andata():
+def rossa_andata():
     direction = 'FS(MM3) - Via Emilia'
     def schedul(lis):
         li = []
@@ -410,7 +410,7 @@ def andata():
 
 
 @app.route('/rossa_ritorno')
-def andata():
+def rossa_ritorno():
     direction = 'Via Emilia - FS(MM3)'
     def schedul(lis):
         li = []
