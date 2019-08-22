@@ -53,7 +53,7 @@ a.a2:hover, a.a2:active {
 a.a3:link, a.a3:visited {
   background-color: blue;
   color: white;
-  padding: 25px 102px;
+  padding: 25px 90px;
   text-align: center;
   text-decoration: none;
   display: table;
@@ -72,6 +72,12 @@ h1.title_orange {
 h1.title_red {
     font-family: Arial, Helvetica, sans-serif;
     color: #ff0000;
+}
+
+
+h1.title_blu {
+    font-family: Arial, Helvetica, sans-serif;
+    color: blue;
 }
 
 div.img{
