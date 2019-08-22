@@ -23,25 +23,47 @@
         <meta name="theme-color" content="#ffffff">
         <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='styles/style.css') }}">
         <meta name="viewport" content="width=device-width, initial-scale=1">
+
     </head>
     <body>
-        <div class="row1">
-            <h1><img src="/static/Eni.jpg"  height="60" align="left"> M.O.T.O. </h1>
-            <br><h3>(Move On Time Ondemand)</h3>
-        </div>
+        <p></p>
         <center>
-            <div class="row2">
-                <p>Keep Mind the badge</p><br>
-            </div>
-            <div class="row3">
-                <br><a class="a1" href="https://orari-navetta.herokuapp.com/arancio_andata">Arancio: Via Emilia - Bolgiano</a>
-                <a class="a1" href="https://orari-navetta.herokuapp.com/arancio_ritorno">Arancio: Bolgiano - Via Emilia</a>
-            </div>
-            <div class="row3">
-                <br><a class="a2" href="https://orari-navetta.herokuapp.com/rossa_andata">Rossa: FS(MM3) - Via Emilia</a>
-                <a class="a2" href="https://orari-navetta.herokuapp.com/rossa_ritorno">Rossa: Via Emilia - FS(MM3)</a>
-            </div>
+            <h1 class="title">
+                <div class="img">
+                    <img src="/static/MOTO.jpg" width="180" />
+                </div>
+                {{direction}}
+                 <br style="clear: both;" />
+            </h1>
+            <h3>{{var}}</h3><br>
         </center>
+
+
+
+        {% if tup|length > 1 %}
+            <center>
+                <p  style="font-size:30px" >1° <img src="/static/rossa-bus.jpg" width="70"/> in: {{tup|min}} min </p><br>
+                <p  style="font-size:30px" >2° <img src="/static/rossa-bus.jpg"  width="70"/> in: {{tup|max}} min </p>
+            </center>
+        {% elif tup[0] == "Finish" %}
+            <center>
+                <p> <img src="/static/rossa-finish.jpg" width="330"/> </p>
+            </center>
+        {% elif tup[0] == "Stop" %}
+            <center>
+                <p> <img src="/static/rossa-stop.jpg" width="330"/> </p>
+            </center>
+        {% else %}
+            <center>
+                <p  style="font-size:25px" > {{tup[0]}} </p>
+            </center>
+        {% endif %}
+        <div class="br">
+            <br>
+            <center>
+                <p> <img src="/static/mappa_arancio.jpg" width="250"/> </p>
+            </center>
+        </div>
     </body>
     <!--developer Paolino Iorio-->
 </html>
