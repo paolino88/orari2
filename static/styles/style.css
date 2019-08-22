@@ -51,12 +51,12 @@ a.a2:hover, a.a2:active {
 
 h1.title_orange {
     font-family: Arial, Helvetica, sans-serif;
-    color: orange;
+    color: #FF9800;
 }
 
 h1.title_red {
     font-family: Arial, Helvetica, sans-serif;
-    color: red;
+    color: #ff0000;
 }
 
 div.img{
