@@ -300,8 +300,8 @@ def rossa_andata():
 
     today = datetime.datetime.today()
     time = datetime.datetime.now()
-    num_month = 2#time.month
-    num_day = 7#today.weekday() + 1
+    num_month = time.month
+    num_day = today.weekday() + 1
 
     if(num_day != 6 and num_day != 7):
         if (num_month < 5 or num_month > 9):
@@ -316,23 +316,23 @@ def rossa_andata():
             var='ORARIO INVERNALE'
         elif(num_day != 5):
             urllib.request.urlretrieve(
-                'https://myeni.eni.com/it_IT/common/documents/Eni_per_noi/trasporti/spostamenti_casa_lavoro/sdm/estivo/arancio.pdf',
-                'arancio.pdf')
-            df = read_pdf('arancio.pdf')
-            l1 = df.loc[[3]].replace(r'.* (\d{2}:\d{2})', r'\1', regex=True).dropna(axis='columns').filter(regex=(".*A.*"),
-                                                                                                       axis=1).values
-            l2 = df.loc[[14]].replace(r'.* (\d+:\d+)', r'\1', regex=True).dropna(axis='columns').filter(regex=("^R"),
-                                                                                                    axis=1).values
+                'https://myeni.eni.com/it_IT/common/documents/Eni_per_noi/trasporti/spostamenti_casa_lavoro/sdm/estivo/rossa.pdf',
+                'rossa.pdf')
+            df = read_pdf('rossa.pdf')
+
+            ind = df[df.iloc[:,0].str.contains('MM3')].index[0]
+            lis=df.iloc[ind:,0].values
+
             var='ORARIO ESTIVO'
         else:
             urllib.request.urlretrieve(
-                'https://myeni.eni.com/it_IT/common/documents/Eni_per_noi/trasporti/spostamenti_casa_lavoro/sdm/estivo/arancio.pdf',
-                'arancio.pdf')
-            df = read_pdf('arancio.pdf')
-            l1 = df.loc[[21]].replace(r'.* (\d{2}:\d{2})', r'\1', regex=True).dropna(axis='columns').filter(regex=(".*A.*"),
-                                                                                                        axis=1).values
-            l2 = df.loc[[33]].replace(r'.* (\d+:\d+)', r'\1', regex=True).dropna(axis='columns').filter(regex=("^R"),
-                                                                                                    axis=1).values
+                'https://myeni.eni.com/it_IT/common/documents/Eni_per_noi/trasporti/spostamenti_casa_lavoro/sdm/estivo/rossa.pdf',
+                'rossa.pdf')
+            df = read_pdf('rossa.pdf')
+
+            ind = df[df.iloc[:,0].str.contains('MM3')].index[0]
+            lis=df.iloc[ind:,0].values
+
             var='VENERDI\' ESTIVO - ORARIO RIDOTTO'
 
 
@@ -448,23 +448,25 @@ def rossa_ritorno():
             var='ORARIO INVERNALE'
         elif(num_day != 5):
             urllib.request.urlretrieve(
-                'https://myeni.eni.com/it_IT/common/documents/Eni_per_noi/trasporti/spostamenti_casa_lavoro/sdm/estivo/arancio.pdf',
-                'arancio.pdf')
-            df = read_pdf('arancio.pdf')
-            l1 = df.loc[[3]].replace(r'.* (\d{2}:\d{2})', r'\1', regex=True).dropna(axis='columns').filter(regex=(".*A.*"),
-                                                                                                       axis=1).values
-            l2 = df.loc[[14]].replace(r'.* (\d+:\d+)', r'\1', regex=True).dropna(axis='columns').filter(regex=("^R"),
-                                                                                                    axis=1).values
+                'https://myeni.eni.com/it_IT/common/documents/Eni_per_noi/trasporti/spostamenti_casa_lavoro/sdm/estivo/rossa.pdf',
+                'rossa.pdf')
+            df = read_pdf('rossa.pdf')
+
+            ind = df.iloc[:, 1].dropna().str.contains('Emilia')
+            idx = ind[ind].index.values
+            lis = df.iloc[idx[0]:idx[1], 1].dropna().values
+
             var='ORARIO ESTIVO'
         else:
             urllib.request.urlretrieve(
-                'https://myeni.eni.com/it_IT/common/documents/Eni_per_noi/trasporti/spostamenti_casa_lavoro/sdm/estivo/arancio.pdf',
-                'arancio.pdf')
-            df = read_pdf('arancio.pdf')
-            l1 = df.loc[[21]].replace(r'.* (\d{2}:\d{2})', r'\1', regex=True).dropna(axis='columns').filter(regex=(".*A.*"),
-                                                                                                        axis=1).values
-            l2 = df.loc[[33]].replace(r'.* (\d+:\d+)', r'\1', regex=True).dropna(axis='columns').filter(regex=("^R"),
-                                                                                                    axis=1).values
+                'https://myeni.eni.com/it_IT/common/documents/Eni_per_noi/trasporti/spostamenti_casa_lavoro/sdm/estivo/rossa.pdf',
+                'rossa.pdf')
+            df = read_pdf('rossa.pdf')
+
+            ind = df.iloc[:, 1].dropna().str.contains('Emilia')
+            idx = ind[ind].index.values
+            lis = df.iloc[idx[1]:,1].dropna().values
+
             var='VENERDI\' ESTIVO - ORARIO RIDOTTO'
 
 
