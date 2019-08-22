@@ -23,12 +23,12 @@
         <meta name="theme-color" content="#ffffff">
         <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='styles/style.css') }}">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        
+
     </head>
     <body>
         <p></p>
         <center>
-            <h1 class="title_orange">
+            <h1 class="title_red">
                 <div class="img">
                     <img src="/static/MOTO.jpg" width="180" />
                 </div>
@@ -42,16 +42,16 @@
 
         {% if tup|length > 1 %}
             <center>
-                <p  style="font-size:30px" >1° <img src="/static/arancio-bus.jpg" width="70"/> in: {{tup|min}} min </p><br>
-                <p  style="font-size:30px" >2° <img src="/static/arancio-bus.jpg"  width="70"/> in: {{tup|max}} min </p>
+                <p  style="font-size:30px" >1° <img src="/static/blu-bus.jpg" width="70"/> in: {{tup|min}} min </p><br>
+                <p  style="font-size:30px" >2° <img src="/static/blu-bus.jpg"  width="70"/> in: {{tup|max}} min </p>
             </center>
         {% elif tup[0] == "Finish" %}
             <center>
-                <p> <img src="/static/arancio-finish.jpg" width="300"/> </p>
+                <p> <img src="/static/blu-finish.jpg" width="300"/> </p>
             </center>
         {% elif tup[0] == "Stop" %}
             <center>
-                <p> <img src="/static/arancio-stop.jpg" width="340"/> </p>
+                <p> <img src="/static/blu-stop.jpg" width="340"/> </p>
             </center>
         {% else %}
             <center>
@@ -61,7 +61,7 @@
         <div class="br">
             <br>
             <center>
-                <p> <img src="/static/mappa_arancio.jpg" width="250"/> </p>
+                <p> <img src="/static/mappa_rossa.jpg" width="250"/> </p>
             </center>
         </div>
     </body>

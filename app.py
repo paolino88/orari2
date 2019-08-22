@@ -271,12 +271,6 @@ def arancio_ritorno():
 
 
 
-
-
-
-
-
-
 @app.route('/rossa_andata')
 def rossa_andata():
     direction = 'FS(MM3) - Via Emilia'
@@ -401,10 +395,6 @@ def rossa_andata():
         delta_minute = 'Stop'
         tup.append(delta_minute)
     return render_template("orari_rossa.html", tup=tup, var=var, direction=direction)
-
-
-
-
 
 
 
@@ -541,12 +531,266 @@ def rossa_ritorno():
 
 
 
+@app.route('/blu_andata')
+def blu_andata():
+    direction = 'Via Fabiani - Via XXV Aprile'
+    def schedul(lis):
+        li = []
+        for el in lis:
+            t = re.findall(r'\d{2}:\d{2}', el)
+            for el0 in t:
+                li.append(el0)
+        return li
+
+    def build_dict(li):
+        dict = {}
+        for el in li:
+            t = re.findall(r'\d+', el)
+            if not int(t[0]) in dict.keys():
+                dict[int(t[0])] = [int(t[1])]
+            else:
+                dict[int(t[0])].append(int(t[1]))
+        return dict
+
+    today = datetime.datetime.today()
+    time = datetime.datetime.now()
+    num_month = time.month
+    num_day = today.weekday() + 1
+
+    if(num_day != 6 and num_day != 7):
+        urllib.request.urlretrieve(
+            'https://myeni.eni.com/it_IT/common/documents/Eni_per_noi/trasporti/spostamenti_casa_lavoro/sdm/estivo/blu.pdf',
+            'blu.pdf')
+        df = read_pdf('blu.pdf', multiple_tables=True)
+
+        if (num_month < 5 or num_month > 9):
+
+            ind0 = df[0].iloc[:, 0].dropna().str.contains('Via Fabiani')
+            idx0 = ind0[ind0].index.values
+            lis0 = df[0].iloc[idx0[0]].dropna().values
+            ind1 = df[1].iloc[:, 0].dropna().str.contains('Via Fabiani')
+            idx1 = ind1[ind1].index.values
+            lis00 = np.concatenate((df[1].iloc[idx1[0]].dropna().values, df[1].iloc[idx1[1]].dropna().values), axis=0)
+            lis = np.concatenate((lis0, lis00), axis=0)
+
+            var='ORARIO INVERNALE'
+        elif(num_day != 5):
+            ind0 = df[0].iloc[:, 0].dropna().str.contains('Via Fabiani')
+            idx0 = ind0[ind0].index.values
+            lis0 = df[0].iloc[idx0[0]].dropna().values
+            ind1 = df[1].iloc[:, 0].dropna().str.contains('Via Fabiani')
+            idx1 = ind1[ind1].index.values
+            lis00 = np.concatenate((df[1].iloc[idx1[0]].dropna().values, df[1].iloc[idx1[1]].dropna().values), axis=0)
+            lis = np.concatenate((lis0, lis00), axis=0)
+
+            var='ORARIO ESTIVO'
+        else:
+            ind0 = df[0].iloc[:, 0].dropna().str.contains('Via Fabiani')
+            idx0 = ind0[ind0].index.values
+            lis0 = df[0].iloc[idx0[0]].dropna().values
+            ind1 = df[1].iloc[:, 0].dropna().str.contains('Via Fabiani')
+            idx1 = ind1[ind1].index.values
+            lis00 = np.concatenate((df[1].iloc[idx1[-2]].dropna().values, df[1].iloc[idx1[-1]].dropna().values), axis=0)
+            lis = np.concatenate((lis0, lis00), axis=0)
 
 
+            var='VENERDI\' ESTIVO - ORARIO RIDOTTO'
+
+        li = schedul(lis)
+
+        dict = build_dict(li)
+
+        time = datetime.datetime.now()
+        tup = []
+        hour = time.hour
+        minute = time.minute
 
 
+        if hour in dict.keys():
+            list_min = [item for item in dict[hour] if minute < item]
+            if (len(list_min) == 1):
+                if(hour == max(dict.keys())):
+                    delta_minute =  'The last one in ' + str(list_min[0] - minute) + ' min'
+                    tup.append(delta_minute)
+                else:
+                    delta_minute = list_min[0] - minute
+                    tup.append(delta_minute)
+                    delta_minute_next = dict[hour + 1][0] + 60 - minute
+                    tup.append(delta_minute_next)
+            elif(len(list_min) > 1):
+                delta_minute = min(list_min) - minute
+                tup.append(delta_minute)
+                list_min.remove(min(list_min))
+                delta_minute_next = min(list_min) - minute
+                tup.append(delta_minute_next)
+            else:
+                if(hour == max(dict.keys())):
+                    delta_minute = "Finish"#'NON CI SONO CORSE PER OGGI'
+                    tup.append(delta_minute)
+                else:
+                    if(len(dict[hour + 1]) > 1):
+                        delta_minute = min(dict[hour + 1]) + 60 - minute
+                        tup.append(delta_minute)
+                        dict[hour + 1].remove(min(dict[hour + 1]))
+                        delta_minute_next = min(dict[hour + 1]) + 60 - minute
+                        tup.append(delta_minute_next)
+                    elif(hour + 1 < max(dict.keys())):
+                        delta_minute = 'The only one in this hour ' + str(hour + 1) + 'in ' + str(min(dict[hour + 1]) + 60 - minute) + ' min'
+                        tup.append(delta_minute)
+                    else:
+                        delta_minute = 'The Last one in ' + str(min(dict[hour + 1]) + 60 - minute) + ' min'
+                        tup.append(delta_minute)
+
+        else:
+            if (hour < min(dict.keys())):
+                hh = min(dict.keys()) - hour
+                if(hh < 2):
+                    delta_minute = 'Start in ' + str(hh * 60 - minute + min(dict[min(dict.keys())])) + ' min'
+                    tup.append(delta_minute)
+                else:
+                    M = min(dict[min(dict.keys())])
+                    delta_minute = 'Start at ' + str(datetime.time(min(dict.keys()),M).strftime("%H:%M"))
+                    tup.append(delta_minute)
+            else:
+                delta_minute = "Finish"#'NON CI SONO CORSE PER OGGI'
+                tup.append(delta_minute)
+    else:
+        var=''
+        tup=[]
+        delta_minute = 'Stop'
+        tup.append(delta_minute)
+    return render_template("orari_blu.html", tup=tup, var=var, direction=direction)
 
 
+@app.route('/blu_ritorno')
+def blu_ritorno():
+    direction = 'Via XXV Aprile - Via Fabiani'
+
+    def schedul(lis):
+        li = []
+        for el in lis:
+            t = re.findall(r'\d{2}:\d{2}', el)
+            for el0 in t:
+                li.append(el0)
+        return li
+
+    def build_dict(li):
+        dict = {}
+        for el in li:
+            t = re.findall(r'\d+', el)
+            if not int(t[0]) in dict.keys():
+                dict[int(t[0])] = [int(t[1])]
+            else:
+                dict[int(t[0])].append(int(t[1]))
+        return dict
+
+    today = datetime.datetime.today()
+    time = datetime.datetime.now()
+    num_month = time.month
+    num_day = today.weekday() + 1
+
+    if (num_day != 6 and num_day != 7):
+        urllib.request.urlretrieve(
+            'https://myeni.eni.com/it_IT/common/documents/Eni_per_noi/trasporti/spostamenti_casa_lavoro/sdm/estivo/blu.pdf',
+            'blu.pdf')
+        df = read_pdf('blu.pdf', multiple_tables=True)
+
+        if (num_month < 5 or num_month > 9):
+
+            ind0 = df[0].iloc[:, 0].dropna().str.contains('Via Fabiani')
+            idx0 = ind0[ind0].index.values
+            lis0 = df[0].iloc[idx0[0]].dropna().values
+            ind1 = df[1].iloc[:, 0].dropna().str.contains('Via Fabiani')
+            idx1 = ind1[ind1].index.values
+            lis00 = np.concatenate((df[1].iloc[idx1[0]].dropna().values, df[1].iloc[idx1[1]].dropna().values), axis=0)
+            lis = np.concatenate((lis0, lis00), axis=0)
+
+            var = 'ORARIO INVERNALE'
+        elif (num_day != 5):
+            ind0 = df[0].iloc[:, 0].dropna().str.contains('Via Fabiani')
+            idx0 = ind0[ind0].index.values
+            lis0 = df[0].iloc[idx0[0]].dropna().values
+            ind1 = df[1].iloc[:, 0].dropna().str.contains('Via Fabiani')
+            idx1 = ind1[ind1].index.values
+            lis00 = np.concatenate((df[1].iloc[idx1[0]].dropna().values, df[1].iloc[idx1[1]].dropna().values), axis=0)
+            lis = np.concatenate((lis0, lis00), axis=0)
+
+            var = 'ORARIO ESTIVO'
+        else:
+            ind0 = df[0].iloc[:, 0].dropna().str.contains('Via Fabiani')
+            idx0 = ind0[ind0].index.values
+            lis0 = df[0].iloc[idx0[0]].dropna().values
+            ind1 = df[1].iloc[:, 0].dropna().str.contains('Via Fabiani')
+            idx1 = ind1[ind1].index.values
+            lis00 = np.concatenate((df[1].iloc[idx1[-2]].dropna().values, df[1].iloc[idx1[-1]].dropna().values), axis=0)
+            lis = np.concatenate((lis0, lis00), axis=0)
+
+            var = 'VENERDI\' ESTIVO - ORARIO RIDOTTO'
+
+        li = schedul(lis)
+
+        dict = build_dict(li)
+
+        time = datetime.datetime.now()
+        tup = []
+        hour = time.hour
+        minute = time.minute
+
+        if hour in dict.keys():
+            list_min = [item for item in dict[hour] if minute < item]
+            if (len(list_min) == 1):
+                if (hour == max(dict.keys())):
+                    delta_minute = 'The last one in ' + str(list_min[0] - minute) + ' min'
+                    tup.append(delta_minute)
+                else:
+                    delta_minute = list_min[0] - minute
+                    tup.append(delta_minute)
+                    delta_minute_next = dict[hour + 1][0] + 60 - minute
+                    tup.append(delta_minute_next)
+            elif (len(list_min) > 1):
+                delta_minute = min(list_min) - minute
+                tup.append(delta_minute)
+                list_min.remove(min(list_min))
+                delta_minute_next = min(list_min) - minute
+                tup.append(delta_minute_next)
+            else:
+                if (hour == max(dict.keys())):
+                    delta_minute = "Finish"  # 'NON CI SONO CORSE PER OGGI'
+                    tup.append(delta_minute)
+                else:
+                    if (len(dict[hour + 1]) > 1):
+                        delta_minute = min(dict[hour + 1]) + 60 - minute
+                        tup.append(delta_minute)
+                        dict[hour + 1].remove(min(dict[hour + 1]))
+                        delta_minute_next = min(dict[hour + 1]) + 60 - minute
+                        tup.append(delta_minute_next)
+                    elif (hour + 1 < max(dict.keys())):
+                        delta_minute = 'The only one in this hour ' + str(hour + 1) + 'in ' + str(
+                            min(dict[hour + 1]) + 60 - minute) + ' min'
+                        tup.append(delta_minute)
+                    else:
+                        delta_minute = 'The Last one in ' + str(min(dict[hour + 1]) + 60 - minute) + ' min'
+                        tup.append(delta_minute)
+
+        else:
+            if (hour < min(dict.keys())):
+                hh = min(dict.keys()) - hour
+                if (hh < 2):
+                    delta_minute = 'Start in ' + str(hh * 60 - minute + min(dict[min(dict.keys())])) + ' min'
+                    tup.append(delta_minute)
+                else:
+                    M = min(dict[min(dict.keys())])
+                    delta_minute = 'Start at ' + str(datetime.time(min(dict.keys()), M).strftime("%H:%M"))
+                    tup.append(delta_minute)
+            else:
+                delta_minute = "Finish"  # 'NON CI SONO CORSE PER OGGI'
+                tup.append(delta_minute)
+    else:
+        var = ''
+        tup = []
+        delta_minute = 'Stop'
+        tup.append(delta_minute)
+    return render_template("orari_blu.html", tup=tup, var=var, direction=direction)
 
 
 @app.route('/')

@@ -49,6 +49,21 @@ a.a2:hover, a.a2:active {
   margin: auto;
 }
 
+
+a.a3:link, a.a3:visited {
+  background-color: blue;
+  color: white;
+  padding: 25px 102px;
+  text-align: center;
+  text-decoration: none;
+  display: table;
+}
+
+a.a3:hover, a.a3:active {
+  background-color: blue;
+  margin: auto;
+}
+
 h1.title_orange {
     font-family: Arial, Helvetica, sans-serif;
     color: #FF9800;
