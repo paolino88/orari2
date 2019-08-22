@@ -301,7 +301,7 @@ def rossa_andata():
     today = datetime.datetime.today()
     time = datetime.datetime.now()
     num_month = 2#time.month
-    num_day = today.weekday() + 1
+    num_day = 7#today.weekday() + 1
 
     if(num_day != 6 and num_day != 7):
         if (num_month < 5 or num_month > 9):
