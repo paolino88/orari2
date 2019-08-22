@@ -432,7 +432,7 @@ def rossa_ritorno():
 
     today = datetime.datetime.today()
     time = datetime.datetime.now()
-    num_month = 2#time.month
+    num_month = time.month
     num_day = today.weekday() + 1
 
     if(num_day != 6 and num_day != 7):
