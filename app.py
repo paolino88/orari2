@@ -85,7 +85,7 @@ def arancio_andata():
             list_min = [item for item in dict[hour] if minute < item]
             if (len(list_min) == 1):
                 if(hour == max(dict.keys())):
-                    delta_minute =  'The last one in ' + str(list_min[0] - minute) + ' min'
+                    delta_minute = 'Ulitmo del giorno tra ' + str(list_min[0] - minute) + ' min'
                     tup.append(delta_minute)
                 else:
                     delta_minute = list_min[0] - minute
@@ -110,21 +110,21 @@ def arancio_andata():
                         delta_minute_next = min(dict[hour + 1]) + 60 - minute
                         tup.append(delta_minute_next)
                     elif(hour + 1 < max(dict.keys())):
-                        delta_minute = 'The only one in this hour ' + str(hour + 1) + 'in ' + str(min(dict[hour + 1]) + 60 - minute) + ' min'
+                        delta_minute = 'Unico delle ore ' + str(hour + 1) + 'tra ' + str(min(dict[hour + 1]) + 60 - minute) + ' min'
                         tup.append(delta_minute)
                     else:
-                        delta_minute = 'The Last one in ' + str(min(dict[hour + 1]) + 60 - minute) + ' min'
+                        delta_minute = 'Ultimo del giorno tra ' + str(min(dict[hour + 1]) + 60 - minute) + ' min'
                         tup.append(delta_minute)
 
         else:
             if (hour < min(dict.keys())):
                 hh = min(dict.keys()) - hour
                 if(hh < 2):
-                    delta_minute = 'Start in ' + str(hh * 60 - minute + min(dict[min(dict.keys())])) + ' min'
+                    delta_minute = 'Inizio tra ' + str(hh * 60 - minute + min(dict[min(dict.keys())])) + ' min'
                     tup.append(delta_minute)
                 else:
                     M = min(dict[min(dict.keys())])
-                    delta_minute = 'Start at ' + str(datetime.time(min(dict.keys()),M).strftime("%H:%M"))
+                    delta_minute = 'Inizio alle ' + str(datetime.time(min(dict.keys()),M).strftime("%H:%M"))
                     tup.append(delta_minute)
             else:
                 delta_minute = "Finish"#'NON CI SONO CORSE PER OGGI'
@@ -214,7 +214,7 @@ def arancio_ritorno():
             list_min = [item for item in dict[hour] if minute < item]
             if (len(list_min) == 1):
                 if(hour == max(dict.keys())):
-                    delta_minute = 'The last one in ' + str(list_min[0] - minute) + ' min'
+                    delta_minute = 'Ulitmo del giorno tra ' + str(list_min[0] - minute) + ' min'
                     tup.append(delta_minute)
                 else:
                     delta_minute = list_min[0] - minute
@@ -239,11 +239,11 @@ def arancio_ritorno():
                         delta_minute_next = min(dict[hour + 1]) + 60 - minute
                         tup.append(delta_minute_next)
                     elif(hour + 1 < max(dict.keys())):
-                        delta_minute = 'The only one in this hour ' + str(hour + 1) + 'in ' + \
+                        delta_minute = 'Unico delle ore ' + str(hour + 1) + 'tra ' + \
                                                                 str(min(dict[hour + 1]) + 60 - minute) + ' min'
                         tup.append(delta_minute)
                     else:
-                        delta_minute = 'The Last one in ' + \
+                        delta_minute = 'Ultimo del giorno tra ' + \
                                                                 str(min(dict[hour + 1]) + 60 - minute) + ' min'
                         tup.append(delta_minute)
 
@@ -251,11 +251,11 @@ def arancio_ritorno():
             if (hour < min(dict.keys())):
                 hh = min(dict.keys()) - hour
                 if(hh < 2):
-                    delta_minute = 'Start in ' + str(hh * 60 - minute + min(dict[min(dict.keys())])) + ' min'
+                    delta_minute = 'Inizio tra ' + str(hh * 60 - minute + min(dict[min(dict.keys())])) + ' min'
                     tup.append(delta_minute)
                 else:
                     M = min(dict[min(dict.keys())])
-                    delta_minute = 'Start at ' + str(datetime.time(min(dict.keys()),M).strftime("%H:%M"))
+                    delta_minute = 'Inizio alle ' + str(datetime.time(min(dict.keys()),M).strftime("%H:%M"))
                     tup.append(delta_minute)
             else:
                 delta_minute = "Finish"#'NON CI SONO CORSE PER OGGI'
@@ -345,7 +345,7 @@ def rossa_andata():
             list_min = [item for item in dict[hour] if minute < item]
             if (len(list_min) == 1):
                 if(hour == max(dict.keys())):
-                    delta_minute =  'The last one in ' + str(list_min[0] - minute) + ' min'
+                    delta_minute = 'Ulitmo del giorno tra ' + str(list_min[0] - minute) + ' min'
                     tup.append(delta_minute)
                 else:
                     delta_minute = list_min[0] - minute
@@ -370,21 +370,21 @@ def rossa_andata():
                         delta_minute_next = min(dict[hour + 1]) + 60 - minute
                         tup.append(delta_minute_next)
                     elif(hour + 1 < max(dict.keys())):
-                        delta_minute = 'The only one in this hour ' + str(hour + 1) + 'in ' + str(min(dict[hour + 1]) + 60 - minute) + ' min'
+                        delta_minute = 'Unico delle ore ' + str(hour + 1) + 'tra ' + str(min(dict[hour + 1]) + 60 - minute) + ' min'
                         tup.append(delta_minute)
                     else:
-                        delta_minute = 'The Last one in ' + str(min(dict[hour + 1]) + 60 - minute) + ' min'
+                        delta_minute = 'Ultimo del giorno tra ' + str(min(dict[hour + 1]) + 60 - minute) + ' min'
                         tup.append(delta_minute)
 
         else:
             if (hour < min(dict.keys())):
                 hh = min(dict.keys()) - hour
                 if(hh < 2):
-                    delta_minute = 'Start in ' + str(hh * 60 - minute + min(dict[min(dict.keys())])) + ' min'
+                    delta_minute = 'Inizio tra ' + str(hh * 60 - minute + min(dict[min(dict.keys())])) + ' min'
                     tup.append(delta_minute)
                 else:
                     M = min(dict[min(dict.keys())])
-                    delta_minute = 'Start at ' + str(datetime.time(min(dict.keys()),M).strftime("%H:%M"))
+                    delta_minute = 'Inizio alle ' + str(datetime.time(min(dict.keys()),M).strftime("%H:%M"))
                     tup.append(delta_minute)
             else:
                 delta_minute = "Finish"#'NON CI SONO CORSE PER OGGI'
@@ -475,7 +475,7 @@ def rossa_ritorno():
             list_min = [item for item in dict[hour] if minute < item]
             if (len(list_min) == 1):
                 if(hour == max(dict.keys())):
-                    delta_minute =  'The last one in ' + str(list_min[0] - minute) + ' min'
+                    delta_minute = 'Ulitmo del giorno tra ' + str(list_min[0] - minute) + ' min'
                     tup.append(delta_minute)
                 else:
                     delta_minute = list_min[0] - minute
@@ -500,21 +500,21 @@ def rossa_ritorno():
                         delta_minute_next = min(dict[hour + 1]) + 60 - minute
                         tup.append(delta_minute_next)
                     elif(hour + 1 < max(dict.keys())):
-                        delta_minute = 'The only one in this hour ' + str(hour + 1) + 'in ' + str(min(dict[hour + 1]) + 60 - minute) + ' min'
+                        delta_minute = 'Unico delle ore ' + str(hour + 1) + 'tra ' + str(min(dict[hour + 1]) + 60 - minute) + ' min'
                         tup.append(delta_minute)
                     else:
-                        delta_minute = 'The Last one in ' + str(min(dict[hour + 1]) + 60 - minute) + ' min'
+                        delta_minute = 'Ultimo del giorno tra ' + str(min(dict[hour + 1]) + 60 - minute) + ' min'
                         tup.append(delta_minute)
 
         else:
             if (hour < min(dict.keys())):
                 hh = min(dict.keys()) - hour
                 if(hh < 2):
-                    delta_minute = 'Start in ' + str(hh * 60 - minute + min(dict[min(dict.keys())])) + ' min'
+                    delta_minute = 'Inzio tra ' + str(hh * 60 - minute + min(dict[min(dict.keys())])) + ' min'
                     tup.append(delta_minute)
                 else:
                     M = min(dict[min(dict.keys())])
-                    delta_minute = 'Start at ' + str(datetime.time(min(dict.keys()),M).strftime("%H:%M"))
+                    delta_minute = 'Inizio alle ' + str(datetime.time(min(dict.keys()),M).strftime("%H:%M"))
                     tup.append(delta_minute)
             else:
                 delta_minute = "Finish"#'NON CI SONO CORSE PER OGGI'
@@ -610,7 +610,7 @@ def blu_andata():
             list_min = [item for item in dict[hour] if minute < item]
             if (len(list_min) == 1):
                 if(hour == max(dict.keys())):
-                    delta_minute =  'The last one in ' + str(list_min[0] - minute) + ' min'
+                    delta_minute =  'Ulitmo del giorno tra ' + str(list_min[0] - minute) + ' min'
                     tup.append(delta_minute)
                 else:
                     delta_minute = list_min[0] - minute
@@ -635,21 +635,21 @@ def blu_andata():
                         delta_minute_next = min(dict[hour + 1]) + 60 - minute
                         tup.append(delta_minute_next)
                     elif(hour + 1 < max(dict.keys())):
-                        delta_minute = 'The only one in this hour ' + str(hour + 1) + 'in ' + str(min(dict[hour + 1]) + 60 - minute) + ' min'
+                        delta_minute = 'Unico delle ore ' + str(hour + 1) + 'tra ' + str(min(dict[hour + 1]) + 60 - minute) + ' min'
                         tup.append(delta_minute)
                     else:
-                        delta_minute = 'The Last one in ' + str(min(dict[hour + 1]) + 60 - minute) + ' min'
+                        delta_minute = 'Ultimo del giorno tra ' + str(min(dict[hour + 1]) + 60 - minute) + ' min'
                         tup.append(delta_minute)
 
         else:
             if (hour < min(dict.keys())):
                 hh = min(dict.keys()) - hour
                 if(hh < 2):
-                    delta_minute = 'Start in ' + str(hh * 60 - minute + min(dict[min(dict.keys())])) + ' min'
+                    delta_minute = 'Inizio tra ' + str(hh * 60 - minute + min(dict[min(dict.keys())])) + ' min'
                     tup.append(delta_minute)
                 else:
                     M = min(dict[min(dict.keys())])
-                    delta_minute = 'Start at ' + str(datetime.time(min(dict.keys()),M).strftime("%H:%M"))
+                    delta_minute = 'Inizio alle ' + str(datetime.time(min(dict.keys()),M).strftime("%H:%M"))
                     tup.append(delta_minute)
             else:
                 delta_minute = "Finish"#'NON CI SONO CORSE PER OGGI'
@@ -740,7 +740,7 @@ def blu_ritorno():
             list_min = [item for item in dict[hour] if minute < item]
             if (len(list_min) == 1):
                 if (hour == max(dict.keys())):
-                    delta_minute = 'The last one in ' + str(list_min[0] - minute) + ' min'
+                    delta_minute = 'Ulitmo del giorno tra ' + str(list_min[0] - minute) + ' min'
                     tup.append(delta_minute)
                 else:
                     delta_minute = list_min[0] - minute
@@ -765,22 +765,22 @@ def blu_ritorno():
                         delta_minute_next = min(dict[hour + 1]) + 60 - minute
                         tup.append(delta_minute_next)
                     elif (hour + 1 < max(dict.keys())):
-                        delta_minute = 'The only one in this hour ' + str(hour + 1) + 'in ' + str(
+                        delta_minute = 'Unico delle ore ' + str(hour + 1) + 'tra ' + str(
                             min(dict[hour + 1]) + 60 - minute) + ' min'
                         tup.append(delta_minute)
                     else:
-                        delta_minute = 'The Last one in ' + str(min(dict[hour + 1]) + 60 - minute) + ' min'
+                        delta_minute = 'Ultimo del giorno tra ' + str(min(dict[hour + 1]) + 60 - minute) + ' min'
                         tup.append(delta_minute)
 
         else:
             if (hour < min(dict.keys())):
                 hh = min(dict.keys()) - hour
                 if (hh < 2):
-                    delta_minute = 'Start in ' + str(hh * 60 - minute + min(dict[min(dict.keys())])) + ' min'
+                    delta_minute = 'Inizio alle ' + str(hh * 60 - minute + min(dict[min(dict.keys())])) + ' min'
                     tup.append(delta_minute)
                 else:
                     M = min(dict[min(dict.keys())])
-                    delta_minute = 'Start at ' + str(datetime.time(min(dict.keys()), M).strftime("%H:%M"))
+                    delta_minute = 'Inizio tra ' + str(datetime.time(min(dict.keys()), M).strftime("%H:%M"))
                     tup.append(delta_minute)
             else:
                 delta_minute = "Finish"  # 'NON CI SONO CORSE PER OGGI'
