@@ -793,6 +793,7 @@ def blu_ritorno():
     return render_template("orari_blu.html", tup=tup, var=var, direction=direction)
 
 
+
 @app.route('/')
 def index():
     return render_template("index.html")
