@@ -794,7 +794,7 @@ def blu_ritorno():
 
 
 
-#QUESTO é UN  COMMENTO
+#QUESTO é UN     COMMENTO
 
 @app.route('/')
 def index():
