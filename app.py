@@ -6,7 +6,6 @@ import numpy as np
 import datetime
 import re
 
-#ciao
 
 app = Flask(__name__)
 
