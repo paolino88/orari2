@@ -853,7 +853,7 @@ def verde_andata():
 
         time = datetime.datetime.now()
         tup = []
-        hour = 8#time.hour
+        hour = time.hour
         minute = time.minute
 
         if hour in dict.keys():
