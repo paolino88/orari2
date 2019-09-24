@@ -795,8 +795,6 @@ def blu_ritorno():
 
 
 
-
-
 @app.route('/verde_andata')
 def verde_andata():
     direction = 'FS(MM3) - Bolgiano'
@@ -914,7 +912,120 @@ def verde_andata():
 
 
 
+@app.route('/verde_ritorno')
+def verde_ritorno():
+    direction = 'Bolgiano - FS(MM3)'
 
+    def build_dict(dat):
+        dict = {}
+        for l in dat:
+            el = re.findall(r'\d{2}', l)
+            if not int(el[0]) in dict.keys():
+                dict[int(el[0])] = [int(el[1])]
+            else:
+                dict[int(el[0])].append(int(el[1]))
+        return dict
+
+    today = datetime.datetime.today()
+    time = datetime.datetime.now()
+    num_month = time.month
+    num_day = today.weekday() + 1
+
+    if (num_day != 6 and num_day != 7):
+        if (num_month < 5 or num_month > 9):
+            urllib.request.urlretrieve(
+                'https://myeni.eni.com/it_IT/common/documents/Eni_per_noi/trasporti/spostamenti_casa_lavoro/sdm/invernale/verde.pdf',
+                'verde.pdf')
+            df = read_pdf('verde.pdf', multiple_tables=True)
+
+            Data = df[1].rename(columns={0: "A", 1: "B", 2: "C", 3: "D", 4: "E"})
+            dat = Data.A[Data.A.str.contains('\d+:', regex=True, na=False)].values
+
+            var = 'ORARIO INVERNALE'
+        elif (num_day != 5):
+            urllib.request.urlretrieve(
+                'https://myeni.eni.com/it_IT/common/documents/Eni_per_noi/trasporti/spostamenti_casa_lavoro/sdm/estivo/verde.pdf',
+                'verde.pdf')
+            df = read_pdf('verde.pdf', multiple_tables=True)
+
+            Data = df[1].rename(columns={0: "A", 1: "B", 2: "C", 3: "D", 4: "E"})
+            dat = Data.A[Data.A.str.contains('\d+:', regex=True, na=False)].values
+
+            var = 'ORARIO ESTIVO'
+        else:
+            urllib.request.urlretrieve(
+                'https://myeni.eni.com/it_IT/common/documents/Eni_per_noi/trasporti/spostamenti_casa_lavoro/sdm/estivo/verde.pdf',
+                'verde.pdf')
+            df = read_pdf('verde.pdf', multiple_tables=True)
+
+            Data = df[2].rename(columns={0: "A", 1: "B", 2: "C", 3: "D", 4: "E"})
+            dat = Data.A[Data.A.str.contains('\d+:', regex=True, na=False)].values
+
+            var = 'VENERDI\' ESTIVO - ORARIO RIDOTTO'
+
+
+        dict = build_dict(dat)
+
+        time = datetime.datetime.now()
+        tup = []
+        hour = time.hour
+        minute = time.minute
+
+        if hour in dict.keys():
+            list_min = [item for item in dict[hour] if minute < item]
+            if (len(list_min) == 1):
+                if (hour == max(dict.keys())):
+                    delta_minute = 'Ulitmo del giorno tra ' + str(list_min[0] - minute) + ' min'
+                    tup.append(delta_minute)
+                else:
+                    delta_minute = list_min[0] - minute
+                    tup.append(delta_minute)
+                    delta_minute_next = dict[hour + 1][0] + 60 - minute
+                    tup.append(delta_minute_next)
+            elif (len(list_min) > 1):
+                delta_minute = min(list_min) - minute
+                tup.append(delta_minute)
+                list_min.remove(min(list_min))
+                delta_minute_next = min(list_min) - minute
+                tup.append(delta_minute_next)
+            else:
+                if (hour == max(dict.keys())):
+                    delta_minute = "Finish"  # 'NON CI SONO CORSE PER OGGI'
+                    tup.append(delta_minute)
+                else:
+                    if (len(dict[hour + 1]) > 1):
+                        delta_minute = min(dict[hour + 1]) + 60 - minute
+                        tup.append(delta_minute)
+                        dict[hour + 1].remove(min(dict[hour + 1]))
+                        delta_minute_next = min(dict[hour + 1]) + 60 - minute
+                        tup.append(delta_minute_next)
+                    elif (hour + 1 < max(dict.keys())):
+                        delta_minute = 'Unico delle ore ' + str(hour + 1) + 'tra ' + str(
+                            min(dict[hour + 1]) + 60 - minute) + ' min'
+                        tup.append(delta_minute)
+                    else:
+                        delta_minute = 'Ultimo del giorno tra ' + str(min(dict[hour + 1]) + 60 - minute) + ' min'
+                        tup.append(delta_minute)
+
+        else:
+            if (hour < min(dict.keys())):
+                hh = min(dict.keys()) - hour
+                if (hh < 2):
+                    delta_minute = 'Inizio alle ' + str(hh * 60 - minute + min(dict[min(dict.keys())])) + ' min'
+                    tup.append(delta_minute)
+                else:
+                    M = min(dict[min(dict.keys())])
+                    delta_minute = 'Inizio tra ' + str(datetime.time(min(dict.keys()), M).strftime("%H:%M"))
+                    tup.append(delta_minute)
+            else:
+                delta_minute = "Finish"  # 'NON CI SONO CORSE PER OGGI'
+                tup.append(delta_minute)
+    else:
+        var = ''
+        tup = []
+        delta_minute = 'Stop'
+        tup.append(delta_minute)
+    return render_template("orari_verde.html", tup=tup, var=var, direction=direction)
 
 
 
