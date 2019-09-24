@@ -809,6 +809,7 @@ def verde_andata():
                 dict[int(el[0])] = [int(el[1])]
             else:
                 dict[int(el[0])].append(int(el[1]))
+        return dict
 
     today = datetime.datetime.today()
     time = datetime.datetime.now()
@@ -852,7 +853,7 @@ def verde_andata():
 
         time = datetime.datetime.now()
         tup = []
-        hour = time.hour
+        hour = 8#time.hour
         minute = time.minute
 
         if hour in dict.keys():
@@ -909,7 +910,7 @@ def verde_andata():
         tup = []
         delta_minute = 'Stop'
         tup.append(delta_minute)
-    return render_template("orari_verde")
+    return render_template("orari_verde.html", tup=tup, var=var, direction=direction)
 
 
 

@@ -23,26 +23,47 @@
         <meta name="theme-color" content="#ffffff">
         <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='styles/style.css') }}">
         <meta name="viewport" content="width=device-width, initial-scale=1">
+
     </head>
     <body>
-        <div class="row1">
-            <h1><img src="/static/Eni.jpg"  height="60" align="left"> M.O.T.O. </h1>
-            <br><h3>(Move On Time On-demand)</h3>
-        </div>
+        <p></p>
         <center>
-            <div class="row2">
-                <p>Keep in Mind the badge</p><br>
-            </div>
-            <div class="row3">
-                <br><a class="a1" href="https://orari-navetta.herokuapp.com/arancio_andata">Arancio: Via Emilia - Bolgiano</a>
-                <a class="a1" href="https://orari-navetta.herokuapp.com/arancio_ritorno">Arancio: Bolgiano - Via Emilia</a>
-                <br><a class="a2" href="https://orari-navetta.herokuapp.com/rossa_andata">Rossa: FS(MM3) - Via Emilia</a>
-                <a class="a2" href="https://orari-navetta.herokuapp.com/rossa_ritorno">Rossa: Via Emilia - FS(MM3)</a>
-                <br><a class="a3" href="https://orari-navetta.herokuapp.com/blu_andata">Blu: Via Fabiani - Via XXV Aprile</a>
-                <a class="a3" href="https://orari-navetta.herokuapp.com/blu_ritorno">Blu: Via XXV Aprile - Via Fabiani</a>
-                <br><a class="a4" href="https://orari-navetta.herokuapp.com/verde_andata">Verde: FS(MM3) - Bolgiano</a>
-            </div>
+            <h1 class="title_verde">
+                <div class="img">
+                    <img src="/static/MOTO.jpg" width="180" />
+                </div>
+                {{direction}}
+                 <br style="clear: both;" />
+            </h1>
+            <h3>{{var}}</h3><br>
         </center>
+
+
+
+        {% if tup|length > 1 %}
+            <center>
+                <p  style="font-size:30px" >1° <img src="/static/verde-bus.jpg" width="70"/> tra: {{tup|min}} min </p><br>
+                <p  style="font-size:30px" >2° <img src="/static/verde-bus.jpg"  width="70"/> tra: {{tup|max}} min </p>
+            </center>
+        {% elif tup[0] == "Finish" %}
+            <center>
+                <p> <img src="/static/verde-finish.jpg" width="300"/> </p>
+            </center>
+        {% elif tup[0] == "Stop" %}
+            <center>
+                <p> <img src="/static/verde-stop.jpg" width="340"/> </p>
+            </center>
+        {% else %}
+            <center>
+                <p  style="font-size:25px" > {{tup[0]}} </p>
+            </center>
+        {% endif %}
+        <div class="br">
+            <br>
+            <center>
+                <!--<p> <img src="/static/mappa_blu.jpg" width="250"/> </p>-->
+            </center>
+        </div>
     </body>
     <!--developer Paolino Iorio-->
 </html>

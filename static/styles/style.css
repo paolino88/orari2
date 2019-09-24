@@ -64,6 +64,21 @@ a.a3:hover, a.a3:active {
   margin: auto;
 }
 
+
+a.a4:link, a.a4:visited {
+  background-color: green;
+  color: white;
+  padding: 25px 108px;
+  text-align: center;
+  text-decoration: none;
+  display: table;
+}
+
+a.a4:hover, a.a4:active {
+  background-color: green;
+  margin: auto;
+}
+
 h1.title_orange {
     font-family: Arial, Helvetica, sans-serif;
     color: #FF9800;
@@ -78,6 +93,12 @@ h1.title_red {
 h1.title_blu {
     font-family: Arial, Helvetica, sans-serif;
     color: blue;
+}
+
+
+h1.title_verde {
+    font-family: Arial, Helvetica, sans-serif;
+    color: green;
 }
 
 div.img{
