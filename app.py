@@ -776,11 +776,11 @@ def blu_ritorno():
             if (hour < min(dict.keys())):
                 hh = min(dict.keys()) - hour
                 if (hh < 2):
-                    delta_minute = 'Inizio alle ' + str(hh * 60 - minute + min(dict[min(dict.keys())])) + ' min'
+                    delta_minute = 'Inizio tra ' + str(hh * 60 - minute + min(dict[min(dict.keys())])) + ' min'
                     tup.append(delta_minute)
                 else:
                     M = min(dict[min(dict.keys())])
-                    delta_minute = 'Inizio tra ' + str(datetime.time(min(dict.keys()), M).strftime("%H:%M"))
+                    delta_minute = 'Inizio alle ' + str(datetime.time(min(dict.keys()), M).strftime("%H:%M"))
                     tup.append(delta_minute)
             else:
                 delta_minute = "Finish"  # 'NON CI SONO CORSE PER OGGI'
@@ -894,11 +894,11 @@ def verde_andata():
             if (hour < min(dict.keys())):
                 hh = min(dict.keys()) - hour
                 if (hh < 2):
-                    delta_minute = 'Inizio alle ' + str(hh * 60 - minute + min(dict[min(dict.keys())])) + ' min'
+                    delta_minute = 'Inizio tra ' + str(hh * 60 - minute + min(dict[min(dict.keys())])) + ' min'
                     tup.append(delta_minute)
                 else:
                     M = min(dict[min(dict.keys())])
-                    delta_minute = 'Inizio tra ' + str(datetime.time(min(dict.keys()), M).strftime("%H:%M"))
+                    delta_minute = 'Inizio alle ' + str(datetime.time(min(dict.keys()), M).strftime("%H:%M"))
                     tup.append(delta_minute)
             else:
                 delta_minute = "Finish"  # 'NON CI SONO CORSE PER OGGI'
@@ -1011,11 +1011,11 @@ def verde_ritorno():
             if (hour < min(dict.keys())):
                 hh = min(dict.keys()) - hour
                 if (hh < 2):
-                    delta_minute = 'Inizio alle ' + str(hh * 60 - minute + min(dict[min(dict.keys())])) + ' min'
+                    delta_minute = 'Inizio tra ' + str(hh * 60 - minute + min(dict[min(dict.keys())])) + ' min'
                     tup.append(delta_minute)
                 else:
                     M = min(dict[min(dict.keys())])
-                    delta_minute = 'Inizio tra ' + str(datetime.time(min(dict.keys()), M).strftime("%H:%M"))
+                    delta_minute = 'Inizio alle ' + str(datetime.time(min(dict.keys()), M).strftime("%H:%M"))
                     tup.append(delta_minute)
             else:
                 delta_minute = "Finish"  # 'NON CI SONO CORSE PER OGGI'
