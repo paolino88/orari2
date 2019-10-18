@@ -1,0 +1,125 @@
+div.row1 {
+    box-sizing: content-box;
+    width: auto;
+    height: auto;
+    padding: 20px;
+    border: 8px solid #ffd700;
+    font-family: Arial, Helvetica, sans-serif;
+    text-align: center;
+}
+
+
+div.row2{
+    position: relative;
+}
+
+
+div.row3 {
+    font-family: Arial, Helvetica, sans-serif;
+    position: relative;
+    left: auto;
+}
+
+a.a1:link, a.a1:visited {
+  background-color: #FF9800;
+  color: white;
+  padding: 25px 100px;
+  text-align: center;
+  text-decoration: none;
+  display: table;
+}
+
+a.a1:hover, a.a1:active {
+  background-color: orange;
+  margin: auto;
+}
+
+
+a.a2:link, a.a2:visited {
+  background-color: #ff0000;
+  color: white;
+  padding: 25px 102px;
+  text-align: center;
+  text-decoration: none;
+  display: table;
+}
+
+a.a2:hover, a.a2:active {
+  background-color: red;
+  margin: auto;
+}
+
+
+a.a3:link, a.a3:visited {
+  background-color: blue;
+  color: white;
+  padding: 25px 90px;
+  text-align: center;
+  text-decoration: none;
+  display: table;
+}
+
+a.a3:hover, a.a3:active {
+  background-color: blue;
+  margin: auto;
+}
+
+
+a.a4:link, a.a4:visited {
+  background-color: green;
+  color: white;
+  padding: 25px 108px;
+  text-align: center;
+  text-decoration: none;
+  display: table;
+}
+
+a.a4:hover, a.a4:active {
+  background-color: green;
+  margin: auto;
+}
+
+h1.title_orange {
+    font-family: Arial, Helvetica, sans-serif;
+    color: #FF9800;
+}
+
+h1.title_red {
+    font-family: Arial, Helvetica, sans-serif;
+    color: #ff0000;
+}
+
+
+h1.title_blu {
+    font-family: Arial, Helvetica, sans-serif;
+    color: blue;
+}
+
+
+h1.title_verde {
+    font-family: Arial, Helvetica, sans-serif;
+    color: green;
+}
+
+div.img{
+    margin: 20px 15px 15px 20px;
+    width: 50%;
+}
+
+
+div.link{
+    font-size: 30px;
+}
+
+div.br {
+   display: block;
+   margin: 15px 0;
+}
+
+
+* {
+    padding: 0 ;
+    margin: 0 ;
+    border: 0;
+}
+
