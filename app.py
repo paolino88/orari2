@@ -8,7 +8,6 @@ import numpy as np
 import datetime
 import re
 
-
 app = Flask(__name__)
 
 @app.route('/arancio_andata')
