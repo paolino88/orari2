@@ -24,26 +24,37 @@
         <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='styles/style.css') }}">
         <meta name="viewport" content="width=device-width, initial-scale=1">
     </head>
+
     <body>
-        <div class="row1">
-            <h1><img src="/static/Eni.jpg"  height="60" align="left"> M.O.T.O. </h1>
-            <br><h3>(Move On Time On-demand)</h3>
+        <div class="grad1"></div>
+        <img class='im_eni' src="/static/Eni.jpg"/>
+        <!--   <div class="row1">
+           <img src="/static/Eni.jpg"  height="70" align="left"/>
+           <img class="img_moto" src="/static/MOTO.jpg" width="60" align="right"/>
+            <h1 class="gfg1"> M.O.T.O. </h1>
+            <br><h3 class="gfg2">Move On Time On-demand</h3>
         </div>
-        <center>
-            <div class="row2">
-                <p>Keep in Mind the badge</p><br>
+        <div class="row2">
+            <p>Keep in Mind the badge</p><br>
+        </div>
+
+        <div class="navbar">
+            <div class="dropdown">
+                <button class="dropbtn">Linea Arancio
+                    <i class="fa fa-caret-down"></i>
+                </button>
+                <div class="dropdown-content">
+                    <a href="https://navetta.herokuapp.com/arancio_andata"><b>C:</b>Bolgiano</a>
+                    <a href="https://navetta.herokuapp.com/arancio_ritorno"><b>C:</b>Stazione F.F.S.S.</a>
+                </div>
             </div>
-            <div class="row3">
-                <br><a class="a1" href="https://orari-navetta.herokuapp.com/arancio_andata">Arancio: Via Emilia - Bolgiano</a>
-                <a class="a1" href="https://orari-navetta.herokuapp.com/arancio_ritorno">Arancio: Bolgiano - Via Emilia</a>
-                <br><a class="a2" href="https://orari-navetta.herokuapp.com/rossa_andata">Rossa: FS(MM3) - Via Emilia</a>
-                <a class="a2" href="https://orari-navetta.herokuapp.com/rossa_ritorno">Rossa: Via Emilia - FS(MM3)</a>
-                <br><a class="a3" href="https://orari-navetta.herokuapp.com/blu_andata">Blu: Via Fabiani - Via XXV Aprile</a>
-                <a class="a3" href="https://orari-navetta.herokuapp.com/blu_ritorno">Blu: Via XXV Aprile - Via Fabiani</a>
-                <br><a class="a4" href="https://orari-navetta.herokuapp.com/verde_andata">Verde: FS(MM3) - Bolgiano</a>
-                <a class="a4" href="https://orari-navetta.herokuapp.com/verde_ritorno">Verde: Bolgiano - FS(MM3)</a>
-            </div>
-        </center>
+        </div>
+
+    <img class="img_mappa" src="/static/mappa_metro.png"/> -->
     </body>
-    <!--developer Paolino Iorio-->
+
+
+
+
+
 </html>
