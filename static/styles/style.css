@@ -5,11 +5,10 @@ div.grad1 {
 }
 
 img.im_eni {
-    display: flex;
-    margin-left: auto;
-    margin-right: 100px;
-    margin-top: -28px;
+    position: absolute;
+    right: 100px;
     width: 1.7%;
+    margin-bottom: 20px;
 }
 
 
