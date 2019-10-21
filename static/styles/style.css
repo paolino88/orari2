@@ -8,9 +8,9 @@ img.im_eni {
     position: absolute;
     top: 1px;
     right: 100px;
-    max-width: 1.7%;
+
     margin-bottom: 20px;
-    height: auto;
+    height: 30px;
     width: auto\9; /* ie8 */
 }
 
