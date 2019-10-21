@@ -8,7 +8,7 @@ img.im_eni {
   overflow: hidden;
   background-color: #ffd700;
   margin-top: 100px;
-  margin-right: -466px;
+  margin-right: -467px;
 }
 
 .navbar a {
@@ -76,16 +76,24 @@ img.img_mappa {
 img.im_moto {
     position: absolute;
     top: 10px;
+    left: 150px;
+    height: 50px;
+    width: 55px;
+}
+
+img.im_eni1 {
+    position: absolute;
+    top: 10px;
     left: 50px;
-    height: 70px;
-    width: 80px;
+    height: 50px;
+    width: 60px;
 }
 
 .navbar1 {
   overflow: hidden;
   background-color: orange;
-  margin-top: 60px;
-  margin-right: -465px;
+  margin-top: 40px;
+  margin-right: -467px;
 }
 
 .navbar1 a {
