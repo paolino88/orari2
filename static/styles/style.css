@@ -82,11 +82,10 @@ div.row3 {
 a.a1:link, a.a1:visited {
   background-color: orange;
   color: white;
-  padding: 25px 110px;
-  padding-left: 109px;
+  padding: 14px 25px;
   text-align: center;
   text-decoration: none;
-  display: table;
+  display: inline-block;
 }
 
 a.a1:hover, a.a1:active {
@@ -98,10 +97,10 @@ a.a1:hover, a.a1:active {
 a.a2:link, a.a2:visited {
   background-color: orange;
   color: white;
-  padding: 25px 110px;
+  padding: 14px 25px;
   text-align: center;
   text-decoration: none;
-  display: table;
+  display: inline-block;
 }
 
 a.a2:hover, a.a2:active {
@@ -113,10 +112,10 @@ a.a2:hover, a.a2:active {
 a.a3:link, a.a3:visited {
   background-color: orange;
   color: white;
-  padding: 25px 91px;
+  padding: 14px 25px;
   text-align: center;
   text-decoration: none;
-  display: table;
+  display: inline-block;
 }
 
 a.a3:hover, a.a3:active {
@@ -128,10 +127,10 @@ a.a3:hover, a.a3:active {
 a.a4:link, a.a4:visited {
   background-color: orange;
   color: white;
-  padding: 25px 69px;
+  padding: 14px 25px;
   text-align: center;
   text-decoration: none;
-  display: table;
+  display: inline-block;
 }
 
 a.a4:hover, a.a4:active {
