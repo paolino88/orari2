@@ -73,6 +73,33 @@ img.img_mappa {
   margin-right: auto;
 }
 
+
+.navbar1 {
+  overflow: hidden;
+  background-color: orange;
+  margin-top: 10px;
+  margin-right: -460px;
+}
+
+.navbar1 a {
+  float: left;
+  font-size: 16px;
+  color: black;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+.navbar1 a:hover, .dropdown:hover .dropbtn {
+  background-color: #ffd700;
+
+
+
+
+
+
+
+
 div.row3 {
     font-family: Arial, Helvetica, sans-serif;
     position: relative;
