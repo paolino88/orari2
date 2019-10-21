@@ -5,10 +5,9 @@ div.grad1 {
 }
 
 img.im_eni {
-position: absolute;
+    position: absolute;
     top: 1px;
-    margin-bottom: 20px;
-    height: 100px;
+    height: 90px;
 }
 
 
