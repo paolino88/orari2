@@ -5,13 +5,10 @@ div.grad1 {
 }
 
 img.im_eni {
-    position: absolute;
+position: absolute;
     top: 1px;
-    right: 100px;
-
     margin-bottom: 20px;
-    height: 27px;
-    width: auto\9; /* ie8 */
+    height: 100px;
 }
 
 
