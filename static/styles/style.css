@@ -8,6 +8,7 @@ img.im_eni {
   overflow: hidden;
   background-color: #ffd700;
   margin-top: 100px;
+  border-right: none;
 }
 
 .navbar a {
@@ -66,7 +67,7 @@ img.im_eni {
 }
 
 img.img_mappa {
-  height: 1000px;
+  height: 800px;
   display: block;
   margin-left: auto;
   margin-right: auto;
