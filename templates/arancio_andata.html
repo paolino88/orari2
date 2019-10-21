@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <title>orari navetta</title>
+        <title>orari navetta arancio andata</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="apple-touch-icon" sizes="57x57" href="/static/apple-icon-57x57.png">
@@ -23,47 +23,28 @@
         <meta name="theme-color" content="#ffffff">
         <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='styles/style.css') }}">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-
     </head>
     <body>
         <p></p>
         <center>
-            <h1 class="title_verde">
-                <div class="img">
-                    <img src="/static/MOTO.jpg" width="180" />
-                </div>
-                {{direction}}
-                 <br style="clear: both;" />
+            <h1 class="img_moto1">
+                <img src="/static/MOTO.jpg" width="180" />
             </h1>
-            <h3>{{var}}</h3><br>
+            <div class="row3">
+                <br><a class="a1" href="https://navetta.herokuapp.com/arancio_andata/Ar_Stazione">
+                        Stazione F.F.S.S.
+                </a>
+                <a class="a2" href="https://navetta.herokuapp.com/arancio_andata/Ar_Emilia">
+                    Via Emilia (5°Pu)
+                </a>
+                <a class="a3" href="https://navetta.herokuapp.com/arancio_andata/Ar_Agadir">
+                    Via Agadir (EniServizi)
+                </a>
+                <a class="a4" href="https://navetta.herokuapp.com/arancio_andata/Ar_Bolgiano">
+                    Via Maritano (Lab. Bolgiano)
+                </a>
+            </div>
         </center>
-
-
-
-        {% if tup|length > 1 %}
-            <center>
-                <p  style="font-size:30px" >1° <img src="/static/verde-bus.jpg" width="70"/> tra: {{tup|min}} min </p><br>
-                <p  style="font-size:30px" >2° <img src="/static/verde-bus.jpg"  width="70"/> tra: {{tup|max}} min </p>
-            </center>
-        {% elif tup[0] == "Finish" %}
-            <center>
-                <p> <img src="/static/verde-finish.jpg" width="300"/> </p>
-            </center>
-        {% elif tup[0] == "Stop" %}
-            <center>
-                <p> <img src="/static/verde-stop.jpg" width="340"/> </p>
-            </center>
-        {% else %}
-            <center>
-                <p  style="font-size:25px" > {{tup[0]}} </p>
-            </center>
-        {% endif %}
-        <div class="br">
-            <br>
-            <center>
-                <!--<p> <img src="/static/mappa_blu.jpg" width="250"/> </p>-->
-            </center>
-        </div>
     </body>
     <!--developer Paolino Iorio-->
 </html>
