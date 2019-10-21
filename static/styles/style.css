@@ -73,11 +73,18 @@ img.img_mappa {
   margin-right: auto;
 }
 
+img.im_moto {
+    position: absolute;
+    top: 10px;
+    left: 50px;
+    height: 70px;
+    width: 80px;
+}
 
 .navbar1 {
   overflow: hidden;
   background-color: orange;
-  margin-top: 10px;
+  margin-top: 60px;
   margin-right: -465px;
 }
 
