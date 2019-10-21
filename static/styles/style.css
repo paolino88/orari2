@@ -67,7 +67,7 @@ img.im_eni {
 }
 
 img.img_mappa {
-  height: 800px;
+  height: 500px;
   display: block;
   margin-left: auto;
   margin-right: auto;
@@ -85,7 +85,7 @@ a.a1:link, a.a1:visited {
   padding: 14px 25px;
   text-align: center;
   text-decoration: none;
-  display: inline-block;
+  display: block;
 }
 
 a.a1:hover, a.a1:active {
@@ -100,7 +100,7 @@ a.a2:link, a.a2:visited {
   padding: 14px 25px;
   text-align: center;
   text-decoration: none;
-  display: inline-block;
+  display: block;
 }
 
 a.a2:hover, a.a2:active {
@@ -115,7 +115,7 @@ a.a3:link, a.a3:visited {
   padding: 14px 25px;
   text-align: center;
   text-decoration: none;
-  display: inline-block;
+  display: block;
 }
 
 a.a3:hover, a.a3:active {
@@ -130,7 +130,7 @@ a.a4:link, a.a4:visited {
   padding: 14px 25px;
   text-align: center;
   text-decoration: none;
-  display: inline-block;
+  display: block;
 }
 
 a.a4:hover, a.a4:active {
