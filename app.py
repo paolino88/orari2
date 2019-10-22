@@ -144,8 +144,20 @@ def arancio_andata(direction,a,b):
 @app.route('/arancio_andata/Ar_anda_Stazione')
 def index_Ar_anda_Stazione():
     out_def=arancio_andata('Stazione (MM3)',0,11)
-    return render_template("Ar_anda_Stazione.html", tup=out_def[0], var=out_def[1], direction=out_def[2])
+    return render_template("Ar_anda.html", tup=out_def[0], var=out_def[1], direction=out_def[2])
 
+
+
+@app.route('/arancio_andata/Ar_anda_Emilia')
+def index_Ar_anda_Emilia():
+    out_def=arancio_andata('Via Emilia (5°Pu)',1,10)
+    return render_template("Ar_anda.html", tup=out_def[0], var=out_def[1], direction=out_def[2])
+
+
+@app.route('/arancio_andata/Ar_anda_Agadir')
+def index_Ar_anda_Agadir():
+    out_def=arancio_andata('Via Agadir (Eniservizi)',2,9)
+    return render_template("Ar_anda.html", tup=out_def[0], var=out_def[1], direction=out_def[2])
 
 
 
