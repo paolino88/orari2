@@ -12,7 +12,9 @@ def index():
 def index_arancia_andata():
     return render_template('arancio_andata.html')
 
-
+@app.route('/arancio_ritorno')
+def index_arancia_andata():
+    return render_template('arancio_ritorno.html')
 
 
 if __name__ == '__main__':
