@@ -13,7 +13,7 @@ def index_arancia_andata():
     return render_template('arancio_andata.html')
 
 @app.route('/arancio_ritorno')
-def index_arancia_andata():
+def index_arancia_ritorno():
     return render_template('arancio_ritorno.html')
 
 
