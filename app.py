@@ -103,19 +103,27 @@ def arancio_andata(direction,a,b):
                     delta_minute = "Finish"#'NON CI SONO CORSE PER OGGI'
                     tup.append(delta_minute)
                 else:
-                    if(len(dict[hour + 1]) > 1):
-                        delta_minute = min(dict[hour + 1]) + 60 - minute
+                    try:
+                        dict[hour + 1]
+                        if(len(dict[hour + 1]) > 1):
+                            delta_minute = min(dict[hour + 1]) + 60 - minute
+                            tup.append(delta_minute)
+                            dict[hour + 1].remove(min(dict[hour + 1]))
+                            delta_minute_next = min(dict[hour + 1]) + 60 - minute
+                            tup.append(delta_minute_next)
+                        elif(hour + 1 < max(dict.keys())):
+                            delta_minute = 'Unico delle ore ' + str(hour + 1) + 'tra ' + str(min(dict[hour + 1]) + 60 - minute) + ' min'
+                            tup.append(delta_minute)
+                        else:
+                            delta_minute = 'Ultimo del giorno tra ' + str(min(dict[hour + 1]) + 60 - minute) + ' min'
+                            tup.append(delta_minute)
+                    except:
+                        h=hour+2
+                        while not h in dict.keys():
+                            h+=1
+                        M = min(dict[h])
+                        delta_minute = 'Riprende alle ' + str(datetime.time(h, M).strftime("%H:%M"))
                         tup.append(delta_minute)
-                        dict[hour + 1].remove(min(dict[hour + 1]))
-                        delta_minute_next = min(dict[hour + 1]) + 60 - minute
-                        tup.append(delta_minute_next)
-                    elif(hour + 1 < max(dict.keys())):
-                        delta_minute = 'Unico delle ore ' + str(hour + 1) + 'tra ' + str(min(dict[hour + 1]) + 60 - minute) + ' min'
-                        tup.append(delta_minute)
-                    else:
-                        delta_minute = 'Ultimo del giorno tra ' + str(min(dict[hour + 1]) + 60 - minute) + ' min'
-                        tup.append(delta_minute)
-
         else:
             if (hour < min(dict.keys())):
                 hh = min(dict.keys()) - hour
@@ -127,7 +135,16 @@ def arancio_andata(direction,a,b):
                     delta_minute = 'Inizio alle ' + str(datetime.time(min(dict.keys()),M).strftime("%H:%M"))
                     tup.append(delta_minute)
             else:
-                delta_minute = "Finish"#'NON CI SONO CORSE PER OGGI'
+                h = hour + 2
+                while not h in dict.keys():
+                    if h > 23:
+                        delta_minute = "Finish"  # 'NON CI SONO CORSE PER OGGI'
+                        tup.append(delta_minute)
+                        break
+                    else:
+                        h += 1
+                M = min(dict[h])
+                delta_minute = 'Riprende alle ' + str(datetime.time(h, M).strftime("%H:%M"))
                 tup.append(delta_minute)
     else:
         var=''
