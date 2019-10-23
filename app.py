@@ -9,6 +9,10 @@ import re
 
 app = Flask(__name__)
 
+today = datetime.datetime.today()
+time = datetime.datetime.now()
+num_month = time.month
+num_day = today.weekday() + 1
 
 def arancio_andata(direction,a,b):
     dir=direction
@@ -29,10 +33,6 @@ def arancio_andata(direction,a,b):
                 dict[int(t[0])].append(int(t[1]))
         return dict
 
-    today = datetime.datetime.today()
-    time = datetime.datetime.now()
-    num_month = time.month
-    num_day = today.weekday() + 1
 
     if(num_day != 6 and num_day != 7):
         if (num_month < 5 or num_month > 9):
@@ -50,9 +50,9 @@ def arancio_andata(direction,a,b):
                 'https://myeni.eni.com/it_IT/common/documents/Eni_per_noi/trasporti/spostamenti_casa_lavoro/sdm/estivo/arancio.pdf',
                 'arancio.pdf')
             df = read_pdf('arancio.pdf')
-            l1 = df.loc[[3]].replace(r'.* (\d{2}:\d{2})', r'\1', regex=True).dropna(axis='columns').filter(regex=(".*A.*"),
+            l1 = df.loc[[a]].replace(r'.* (\d{2}:\d{2})', r'\1', regex=True).dropna(axis='columns').filter(regex=(".*A.*"),
                                                                                                        axis=1).values
-            l2 = df.loc[[14]].replace(r'.* (\d+:\d+)', r'\1', regex=True).dropna(axis='columns').filter(regex=("^R"),
+            l2 = df.loc[[b]].replace(r'.* (\d+:\d+)', r'\1', regex=True).dropna(axis='columns').filter(regex=("^R"),
                                                                                                     axis=1).values
             var='ORARIO ESTIVO'
         else:
@@ -60,9 +60,9 @@ def arancio_andata(direction,a,b):
                 'https://myeni.eni.com/it_IT/common/documents/Eni_per_noi/trasporti/spostamenti_casa_lavoro/sdm/estivo/arancio.pdf',
                 'arancio.pdf')
             df = read_pdf('arancio.pdf')
-            l1 = df.loc[[21]].replace(r'.* (\d{2}:\d{2})', r'\1', regex=True).dropna(axis='columns').filter(regex=(".*A.*"),
+            l1 = df.loc[[a]].replace(r'.* (\d{2}:\d{2})', r'\1', regex=True).dropna(axis='columns').filter(regex=(".*A.*"),
                                                                                                         axis=1).values
-            l2 = df.loc[[33]].replace(r'.* (\d+:\d+)', r'\1', regex=True).dropna(axis='columns').filter(regex=("^R"),
+            l2 = df.loc[[b]].replace(r'.* (\d+:\d+)', r'\1', regex=True).dropna(axis='columns').filter(regex=("^R"),
                                                                                                     axis=1).values
             var='VENERDI\' ESTIVO - ORARIO RIDOTTO'
 
@@ -139,7 +139,7 @@ def arancio_andata(direction,a,b):
                     delta_minute = "Finish"  # 'NON CI SONO CORSE PER OGGI'
                     tup.append(delta_minute)
                 else:
-                    h=hour+2
+                    h=hour+1
                     while not h in dict.keys():
                         h += 1
                     M = min(dict[h])
@@ -157,22 +157,48 @@ def arancio_andata(direction,a,b):
 
 
 
+
+
+
+
+
+
+
+
+
+
 @app.route('/arancio_andata/Ar_anda_Stazione')
 def index_Ar_anda_Stazione():
-    out_def=arancio_andata('Stazione (MM3)',0,11)
+    if (num_month < 5 or num_month > 9):
+        out_def = arancio_andata('Stazione (MM3)',0,11)
+    elif (num_day != 5):
+        out_def = arancio_andata('Stazione (MM3)', 1, 15)
+    else:
+        out_def = arancio_andata('Stazione (MM3)', 9, 34)
+
     return render_template("Ar_anda.html", tup=out_def[0], var=out_def[1], direction=out_def[2])
 
 
 
 @app.route('/arancio_andata/Ar_anda_Emilia')
 def index_Ar_anda_Emilia():
-    out_def=arancio_andata('Via Emilia (5°Pu)',1,10)
+    if (num_month < 5 or num_month > 9):
+        out_def = arancio_andata('Via Emilia (5°Pu)',1,10)
+    elif (num_day != 5):
+        out_def = arancio_andata('Via Emilia (5°Pu)', 3, 14)
+    else:
+        out_def = arancio_andata('Via Emilia (5°Pu)', 21, 33)
     return render_template("Ar_anda.html", tup=out_def[0], var=out_def[1], direction=out_def[2])
 
 
 @app.route('/arancio_andata/Ar_anda_Agadir')
 def index_Ar_anda_Agadir():
-    out_def=arancio_andata('Via Agadir (Eniservizi)',2,9)
+    if (num_month < 5 or num_month > 9):
+        out_def = arancio_andata('Via Agadir (Eniservizi)',2,9)
+    elif (num_day != 5):
+        out_def = arancio_andata('Via Agadir (Eniservizi)', 5, 12)
+    else:
+        out_def = arancio_andata('Via Agadir (Eniservizi)', 23, 31)
     return render_template("Ar_anda.html", tup=out_def[0], var=out_def[1], direction=out_def[2])
 
 
