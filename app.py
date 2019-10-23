@@ -135,17 +135,16 @@ def arancio_andata(direction,a,b):
                     delta_minute = 'Inizio alle ' + str(datetime.time(min(dict.keys()),M).strftime("%H:%M"))
                     tup.append(delta_minute)
             else:
-                h = hour + 2
-                while not h in dict.keys():
-                    if h > 23:
-                        delta_minute = "Finish"  # 'NON CI SONO CORSE PER OGGI'
-                        tup.append(delta_minute)
-                        break
-                    else:
+                if (hour > max(dict.keys())):
+                    delta_minute = "Finish"  # 'NON CI SONO CORSE PER OGGI'
+                    tup.append(delta_minute)
+                else:
+                    h=hour+2
+                    while not h in dict.keys():
                         h += 1
-                M = min(dict[h])
-                delta_minute = 'Riprende alle ' + str(datetime.time(h, M).strftime("%H:%M"))
-                tup.append(delta_minute)
+                    M = min(dict[h])
+                    delta_minute = 'Riprende alle ' + str(datetime.time(h, M).strftime("%H:%M"))
+                    tup.append(delta_minute)
     else:
         var=''
         tup=[]
