@@ -95,7 +95,7 @@ def arancio_andata(direction,a,b):
                         delta_minute_next = dict[hour + 1][0] + 60 - minute
                         tup.append(delta_minute_next)
                     except:
-                        delta_minute = 'Ulitmo ed unico delle ore '+ str(hour) + ' tra ' + str(list_min[0] - minute) + ' min'
+                        delta_minute = 'Ultimo ed unico delle ore '+ str(hour) + ' tra ' + str(list_min[0] - minute) + ' min'
                         tup.append(delta_minute)
             elif(len(list_min) > 1):
                 delta_minute = min(list_min) - minute
@@ -179,9 +179,9 @@ def index_Ar_anda_Stazione():
     elif (num_day != 5):
         out_def = arancio_andata('Stazione (MM3)', 1, 15)
     else:
-        out_def = arancio_andata('Stazione (MM3)', 9, 34)
+        out_def = arancio_andata('Stazione (MM3)', 19, 34)
 
-    return render_template("Ar_anda.html", tup=out_def[0], var=out_def[1], direction=out_def[2])
+    return render_template("arancia_A_R.html", tup=out_def[0], var=out_def[1], direction=out_def[2])
 
 
 
@@ -193,7 +193,7 @@ def index_Ar_anda_Emilia():
         out_def = arancio_andata('Via Emilia (5°Pu)', 3, 14)
     else:
         out_def = arancio_andata('Via Emilia (5°Pu)', 21, 33)
-    return render_template("Ar_anda.html", tup=out_def[0], var=out_def[1], direction=out_def[2])
+    return render_template("arancia_A_R.html", tup=out_def[0], var=out_def[1], direction=out_def[2])
 
 
 @app.route('/arancio_andata/Ar_anda_Agadir')
@@ -204,7 +204,7 @@ def index_Ar_anda_Agadir():
         out_def = arancio_andata('Via Agadir (Eniservizi)', 5, 12)
     else:
         out_def = arancio_andata('Via Agadir (Eniservizi)', 23, 31)
-    return render_template("Ar_anda.html", tup=out_def[0], var=out_def[1], direction=out_def[2])
+    return render_template("arancia_A_R.html", tup=out_def[0], var=out_def[1], direction=out_def[2])
 
 
 
