@@ -77,8 +77,8 @@ def arancio_andata(direction,a,b):
 
         time = datetime.datetime.now()
         tup = []
-        hour = time.hour
-        minute = time.minute
+        hour = 9#time.hour
+        minute = 2#time.minute
 
 
         if hour in dict.keys():
@@ -88,10 +88,15 @@ def arancio_andata(direction,a,b):
                     delta_minute = 'Ulitmo del giorno tra ' + str(list_min[0] - minute) + ' min'
                     tup.append(delta_minute)
                 else:
-                    delta_minute = list_min[0] - minute
-                    tup.append(delta_minute)
-                    delta_minute_next = dict[hour + 1][0] + 60 - minute
-                    tup.append(delta_minute_next)
+                    try:
+                        dict[hour + 1]
+                        delta_minute = list_min[0] - minute
+                        tup.append(delta_minute)
+                        delta_minute_next = dict[hour + 1][0] + 60 - minute
+                        tup.append(delta_minute_next)
+                    except:
+                        delta_minute = 'Ulitmo ed unico delle ore '+ str(hour) + ' tra ' + str(list_min[0] - minute) + ' min'
+                        tup.append(delta_minute)
             elif(len(list_min) > 1):
                 delta_minute = min(list_min) - minute
                 tup.append(delta_minute)
