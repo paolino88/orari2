@@ -77,8 +77,8 @@ def arancio_andata(direction,a,b):
 
         time = datetime.datetime.now()
         tup = []
-        hour = 9#time.hour
-        minute = 2#time.minute
+        hour = time.hour
+        minute = time.minute
 
 
         if hour in dict.keys():
