@@ -333,11 +333,11 @@ def arancio_ritorno(direction,a,b):
 @app.route('/arancio_andata/Ar_anda_Stazione')
 def index_Ar_anda_Stazione():
     if (num_month < 5 or num_month > 9):
-        out_def = arancio_andata('Stazione (MM3)',0,11)
+        out_def = arancio_andata('Stazione F.F.S.S.',0,11)
     elif (num_day != 5):
-        out_def = arancio_andata('Stazione (MM3)', 1, 15)
+        out_def = arancio_andata('Stazione F.F.S.S.', 1, 15)
     else:
-        out_def = arancio_andata('Stazione (MM3)', 19, 34)
+        out_def = arancio_andata('Stazione F.F.S.S.', 19, 34)
 
     return render_template("arancia_A_R.html",Dir='Direzione Bolgiano',tup=out_def[0], var=out_def[1], direction=out_def[2])
 
@@ -409,6 +409,14 @@ def index_arancia_andata():
 @app.route('/arancio_ritorno')
 def index_arancia_ritorno():
     return render_template('arancio_ritorno.html')
+
+@app.route('/rossa_andata')
+def index_rossa_andata():
+    return render_template('rossa_andata.html')
+
+@app.route('/rossa_ritorno')
+def index_rossa_ritorno():
+    return render_template('rossa_ritorno.html')
 
 
 @app.route('/')

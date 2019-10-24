@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <title>orari navetta</title>
+        <title>orari navetta rossa andata</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="apple-touch-icon" sizes="57x57" href="/static/apple-icon-57x57.png">
@@ -24,34 +24,26 @@
         <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='styles/style.css') }}">
         <meta name="viewport" content="width=device-width, initial-scale=1">
     </head>
-
     <body>
-        <!--<div class="grad1"></div>-->
-        <picture>
-            <img class='im_eni' src="/static/logo.png"/>
-        </picture>
-        <div class="navbar">
-            <div class="dropdown">
-                <button class="dropbtn"><b>Linea Arancio</b>
-                    <i class="fa fa-caret-down"></i>
-                </button>
-                <div class="dropdown-content">
-                    <aa href="https://navetta.herokuapp.com/arancio_andata"><b>C: </b>Bolgiano</aa>
-                    <aa href="https://navetta.herokuapp.com/arancio_ritorno"><b>C: </b>Stazione F.F.S.S.</aa>
-                </div>
-            </div>
-            <div class="dropdownross">
-                <button class="dropbtnross"><b>Linea Rossa</b>
-                    <i class="fa fa-caret-down"></i>
-                </button>
-                <div class="dropdownross-contentross">
-                    <ar href="https://navetta.herokuapp.com/rossa_andata"><b>C: </b>Torre E-Tower</ar>
-                    <ar href="https://navetta.herokuapp.com/rossa_ritorno"><b>C: </b>MM3 - Via Marignano</ar>
-                </div>
-            </div>
-        </div>
+        <p></p>
+
+            <picture>
+                <img class='im_moto' src="/static/MOTO.jpg" />
+                <img class='im_eni1' src="/static/eni.png"/>
+            </picture>
+        <br>
         <center>
-            <img class="img_mappa" src="/static/mappa_metro.png" align="center"/>
+            <div class="navbar2">
+                <a  href="https://navetta.herokuapp.com/rossa_andata/Ros_anda_MM3">
+                       <b>MM3 - Via Marignano</b></a>
+                <a  href="https://navetta.herokuapp.com/rossa_andata/Ros_anda_Vanoni">
+                        <b>P.zza Vanoni</b></a>
+                <a  href="https://navetta.herokuapp.com/rossa_andata/Ros_anda_Emilia">
+                    <b>Via Emilia (5°Pu)</b></a>
+            </div>
+
+            <img class="img_mappa" src="/static/mappa_metro.png"/>
         </center>
     </body>
+    <!--developer Paolino Iorio-->
 </html>
