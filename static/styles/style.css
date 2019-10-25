@@ -173,6 +173,11 @@ h1.stop_orange{
     color: orange;
 }
 
+h1.stop_rossa{
+    font-family: Arial, Helvetica, sans-serif;
+    color: red;
+}
+
 div.link{
     font-size: 30px;
 }

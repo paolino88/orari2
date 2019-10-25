@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <title>orari navetta rossa ritorno</title>
+        <title>orari navetta stazione</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="apple-touch-icon" sizes="57x57" href="/static/apple-icon-57x57.png">
@@ -23,27 +23,48 @@
         <meta name="theme-color" content="#ffffff">
         <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='styles/style.css') }}">
         <meta name="viewport" content="width=device-width, initial-scale=1">
+
     </head>
     <body>
         <p></p>
-
-            <picture>
-                <img class='im_moto' src="/static/MOTO.jpg" />
-                <img class='im_eni1' src="/static/eni.png"/>
-            </picture>
-        <br>
         <center>
-            <div class="navbar2">
-                <a  href="https://navetta.herokuapp.com/arancio_ritorno/Ros_rit_Torre">
-                       <b>Torre E-Tower</b></a>
-                <a  href="https://navetta.herokuapp.com/arancio_ritorno/Ros_rit_Emilia">
-                        <b>Via Emilia (5°Pu)</b></a>
-                <a  href="https://navetta.herokuapp.com/arancio_ritorno/Ros_rit_Vanoni">
-                    <b>P.zza Vanoni (1°- 2°Pu)</b></a>
-            </div>
-
-            <img class="img_mappa" src="/static/mappa_metro.png"/>
+            <picture>
+                <img src="/static/MOTO.jpg" width="180" />
+            </picture>
+            <h3>{{Dir}}</h3><br>
+            <h1 class="stop_rossa">
+                {{direction}}
+            </h1>
+            <br style="clear: both;" />
+            <h3>{{var}}</h3><br>
         </center>
+
+
+
+        {% if tup|length > 1 %}
+            <center>
+                <p  style="font-size:30px" >1° <img src="/static/rossa-bus.jpg" width="70"/> tra: {{tup|min}} min </p>
+                <p  style="font-size:30px" >2° <img src="/static/rossa-bus.jpg"  width="70"/> tra: {{tup|max}} min </p>
+            </center>
+        {% elif tup[0] == "Finish" %}
+            <center>
+                <p> <img src="/static/rossa-finish.jpg" width="300"/> </p>
+            </center>
+        {% elif tup[0] == "Stop" %}
+            <center>
+                <p> <img src="/static/rossa-stop.jpg" width="340"/> </p>
+            </center>
+        {% else %}
+            <center>
+                <p  style="font-size:25px" > {{tup[0]}} </p>
+            </center>
+        {% endif %}
+        <div class="br">
+            <br>
+            <center>
+              <!--  <p> <img src="/static/mappa_arancio.jpg" width="250"/> </p>-->
+            </center>
+        </div>
     </body>
     <!--developer Paolino Iorio-->
 </html>
