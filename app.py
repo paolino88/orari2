@@ -759,11 +759,11 @@ def index_Ros_rit_Torre():
 @app.route('/rossa_ritorno/Ros_rit_Emilia')
 def index_Ros_rit_Emilia():
     if (num_month < 5 or num_month > 9):
-        out_def = rossa_ritorno('VIa Emilia (5°Pu)',1)
+        out_def = rossa_ritorno('Via Emilia (5°Pu)',1)
     elif (num_day != 5):
-        out_def = rossa_ritorno('VIa Emilia (5°Pu)',1)
+        out_def = rossa_ritorno('Via Emilia (5°Pu)',1)
     else:
-        out_def = rossa_ritorno('VIa Emilia (5°Pu)',1)
+        out_def = rossa_ritorno('Via Emilia (5°Pu)',1)
     return render_template("rossa_A_R.html",Dir='Direzione MM3', tup=out_def[0], var=out_def[1], direction=out_def[2])
 
 
