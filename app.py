@@ -625,7 +625,135 @@ def rossa_ritorno(direction,mm):
 
 
 
+def blu_a_r(direction,mm):
+    dir=direction
 
+    def build_dict(li):
+        dict = {}
+        for el in li:
+            t = re.findall(r'\d+', el)
+            h = int(t[0])
+            m = int(t[1])
+            if h <= 9:
+                if not h in dict.keys():
+                    dict[h] = [m]
+                else:
+                    dict[h].append(m)
+            else:
+                m = m + 2
+                if (m >= 60):
+                    h = h + 1
+                    m = m - 60
+                if not h in dict.keys():
+                    dict[h] = [m]
+                else:
+                    dict[h].append(m)
+        return dict
+
+
+    if(num_day != 6 and num_day != 7):
+        if (num_month < 5 or num_month > 9):
+            df = pd.read_csv('./orari_blu_invernale.csv', encoding="ISO-8859-1", delimiter=';')
+
+            li = df.iloc[:, mm].dropna().values
+
+            var='ORARIO INVERNALE'
+        elif(num_day != 5):
+            df = pd.read_csv('./orari_blu_invernale.csv', encoding="ISO-8859-1", delimiter=';')
+
+            li = df.iloc[:, mm].dropna().values
+
+            var='ORARIO ESTIVO'
+        else:
+            df = pd.read_csv('./orari_blu_estivo.csv', encoding="ISO-8859-1", delimiter=';')
+
+            li = df.iloc[:, mm].dropna().values
+
+            var='VENERDI\' ESTIVO - ORARIO RIDOTTO'
+
+
+        dict = build_dict(li)
+
+        time = datetime.datetime.now()
+        tup = []
+        hour = time.hour
+        minute = time.minute
+
+        if hour in dict.keys():
+            list_min = [item for item in dict[hour] if minute < item]
+            if (len(list_min) == 1):
+                if(hour == max(dict.keys())):
+                    delta_minute = 'Ulitmo del giorno tra ' + str(list_min[0] - minute) + ' min'
+                    tup.append(delta_minute)
+                else:
+                    try:
+                        dict[hour + 1]
+                        delta_minute = list_min[0] - minute
+                        tup.append(delta_minute)
+                        delta_minute_next = dict[hour + 1][0] + 60 - minute
+                        tup.append(delta_minute_next)
+                    except:
+                        delta_minute = 'Ultimo ed unico delle ore '+ str(hour) + ' tra ' + str(list_min[0] - minute) + ' min'
+                        tup.append(delta_minute)
+            elif(len(list_min) > 1):
+                delta_minute = min(list_min) - minute
+                tup.append(delta_minute)
+                list_min.remove(min(list_min))
+                delta_minute_next = min(list_min) - minute
+                tup.append(delta_minute_next)
+            else:
+                if(hour == max(dict.keys())):
+                    delta_minute = "Finish"#'NON CI SONO CORSE PER OGGI'
+                    tup.append(delta_minute)
+                else:
+                    try:
+                        dict[hour + 1]
+                        if(len(dict[hour + 1]) > 1):
+                            delta_minute = min(dict[hour + 1]) + 60 - minute
+                            tup.append(delta_minute)
+                            dict[hour + 1].remove(min(dict[hour + 1]))
+                            delta_minute_next = min(dict[hour + 1]) + 60 - minute
+                            tup.append(delta_minute_next)
+                        elif(hour + 1 < max(dict.keys())):
+                            delta_minute = 'Unico delle ore ' + str(hour + 1) + 'tra ' + str(min(dict[hour + 1]) + 60 - minute) + ' min'
+                            tup.append(delta_minute)
+                        else:
+                            delta_minute = 'Ultimo del giorno tra ' + str(min(dict[hour + 1]) + 60 - minute) + ' min'
+                            tup.append(delta_minute)
+                    except:
+                        h=hour+2
+                        while not h in dict.keys():
+                            h+=1
+                        M = min(dict[h])
+                        delta_minute = 'Riprende alle ' + str(datetime.time(h, M).strftime("%H:%M"))
+                        tup.append(delta_minute)
+        else:
+            if (hour < min(dict.keys())):
+                hh = min(dict.keys()) - hour
+                if(hh < 2):
+                    delta_minute = 'Inizio tra ' + str(hh * 60 - minute + min(dict[min(dict.keys())])) + ' min'
+                    tup.append(delta_minute)
+                else:
+                    M = min(dict[min(dict.keys())])
+                    delta_minute = 'Inizio alle ' + str(datetime.time(min(dict.keys()),M).strftime("%H:%M"))
+                    tup.append(delta_minute)
+            else:
+                if (hour > max(dict.keys())):
+                    delta_minute = "Finish"  # 'NON CI SONO CORSE PER OGGI'
+                    tup.append(delta_minute)
+                else:
+                    h=hour+1
+                    while not h in dict.keys():
+                        h += 1
+                    M = min(dict[h])
+                    delta_minute = 'Riprende alle ' + str(datetime.time(h, M).strftime("%H:%M"))
+                    tup.append(delta_minute)
+    else:
+        var=''
+        tup=[]
+        delta_minute = 'Stop'
+        tup.append(delta_minute)
+    return tup,var,dir
 
 
 
@@ -778,6 +906,46 @@ def index_Ros_rit_Vanoni():
     return render_template("rossa_A_R.html",Dir='Direzione MM3', tup=out_def[0], var=out_def[1], direction=out_def[2])
 
 
+###BlU ANDATA/RITORNO
+
+@app.route('/blu_a_r/blu_MM3')
+def index_blu_MM3():
+    if (num_month < 5 or num_month > 9):
+        out_def = blu_a_r('MM3 - Via Marignano',0)
+    elif (num_day != 5):
+        out_def = blu_a_r('MM3 - Via Marignano',0)
+    else:
+        out_def = blu_a_r('MM3 - Via Marignano',0)
+
+    return render_template("blu_An_Rit.html",Dir='Direzione XXV Aprile',tup=out_def[0], var=out_def[1], direction=out_def[2])
+
+
+
+@app.route('/blu_a_r/blu_XXV')
+def index_blu_XXV():
+    if (num_month < 5 or num_month > 9):
+        out_def = blu_a_r('Via XXV Aprile',1)
+    elif (num_day != 5):
+        out_def =  blu_a_r('Via XXV Aprile',1)
+    else:
+        out_def =  blu_a_r('Via XXV Aprile',1)
+    return render_template("blu_An_Rit.html",Dir='Direzione Bonarelli', tup=out_def[0], var=out_def[1], direction=out_def[2])
+
+
+@app.route('/blu_a_r/blu_Bonarelli')
+def index_blu_Bonarelli():
+    if (num_month < 5 or num_month > 9):
+        out_def = blu_a_r('ViaBonarelli (1°Pu)',2)
+    elif (num_day != 5):
+        out_def =  blu_a_r('ViaBonarelli (1°Pu)',2)
+    else:
+        out_def =  blu_a_r('ViaBonarelli (1°Pu)',2)
+    return render_template("blu_An_Rit.html",Dir='Direzione MM3', tup=out_def[0], var=out_def[1], direction=out_def[2])
+
+
+
+
+
 
 @app.route('/arancio_andata')
 def index_arancia_andata():
@@ -794,6 +962,10 @@ def index_rossa_andata():
 @app.route('/rossa_ritorno')
 def index_rossa_ritorno():
     return render_template('rossa_ritorno.html')
+
+@app.route('/blu_a_r')
+def index_blu_a_r():
+    return render_template('blu_a_r.html')
 
 
 @app.route('/')

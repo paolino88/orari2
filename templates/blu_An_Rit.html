@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <title>arancia</title>
+        <title>blu</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="apple-touch-icon" sizes="57x57" href="/static/apple-icon-57x57.png">
@@ -32,7 +32,7 @@
                 <img src="/static/MOTO.jpg" width="180" />
             </picture>
             <h3>{{Dir}}</h3><br>
-            <h1 class="stop_orange">
+            <h1 class="stop_blu">
                 {{direction}}
             </h1>
             <br style="clear: both;" />
@@ -43,16 +43,16 @@
 
         {% if tup|length > 1 %}
             <center>
-                <p  style="font-size:30px" >1° <img src="/static/arancio-bus.jpg" width="70"/> tra: {{tup|min}} min </p>
-                <p  style="font-size:30px" >2° <img src="/static/arancio-bus.jpg"  width="70"/> tra: {{tup|max}} min </p>
+                <p  style="font-size:30px" >1° <img src="/static/blu-bus.jpg" width="70"/> tra: {{tup|min}} min </p>
+                <p  style="font-size:30px" >2° <img src="/static/blu-bus.jpg"  width="70"/> tra: {{tup|max}} min </p>
             </center>
         {% elif tup[0] == "Finish" %}
             <center>
-                <p> <img src="/static/arancio-finish.jpg" width="300"/> </p>
+                <p> <img src="/static/blu-finish.jpg" width="300"/> </p>
             </center>
         {% elif tup[0] == "Stop" %}
             <center>
-                <p> <img src="/static/arancio-stop.jpg" width="340"/> </p>
+                <p> <img src="/static/blu-stop.jpg" width="340"/> </p>
             </center>
         {% else %}
             <center>

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <title>arancia</title>
+        <title>orari navetta blu</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="apple-touch-icon" sizes="57x57" href="/static/apple-icon-57x57.png">
@@ -23,48 +23,27 @@
         <meta name="theme-color" content="#ffffff">
         <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='styles/style.css') }}">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-
     </head>
     <body>
         <p></p>
-        <center>
+
             <picture>
-                <img src="/static/MOTO.jpg" width="180" />
+                <img class='im_moto' src="/static/MOTO.jpg" />
+                <img class='im_eni1' src="/static/eni.png"/>
             </picture>
-            <h3>{{Dir}}</h3><br>
-            <h1 class="stop_orange">
-                {{direction}}
-            </h1>
-            <br style="clear: both;" />
-            <h3>{{var}}</h3><br>
+        <br>
+        <center>
+            <div class="navbar3">
+                <a  href="https://navetta.herokuapp.com/blu_a_r/blu__MM3">
+                       <b>MM3 - Via Marignano</b></a>
+                <a  href="https://navetta.herokuapp.com/blu_a_r/blu_XXV">
+                        <b>Via XXV Aprile 6/8</b></a>
+                <a  href="https://navetta.herokuapp.com/blu_a_r/blu_Bonarelli">
+                    <b>Via Bonarelli (1°Pu)</b></a>
+            </div>
+
+            <img class="img_mappa" src="/static/mappa_metro.png"/>
         </center>
-
-
-
-        {% if tup|length > 1 %}
-            <center>
-                <p  style="font-size:30px" >1° <img src="/static/arancio-bus.jpg" width="70"/> tra: {{tup|min}} min </p>
-                <p  style="font-size:30px" >2° <img src="/static/arancio-bus.jpg"  width="70"/> tra: {{tup|max}} min </p>
-            </center>
-        {% elif tup[0] == "Finish" %}
-            <center>
-                <p> <img src="/static/arancio-finish.jpg" width="300"/> </p>
-            </center>
-        {% elif tup[0] == "Stop" %}
-            <center>
-                <p> <img src="/static/arancio-stop.jpg" width="340"/> </p>
-            </center>
-        {% else %}
-            <center>
-                <p  style="font-size:25px" > {{tup[0]}} </p>
-            </center>
-        {% endif %}
-        <div class="br">
-            <br>
-            <center>
-              <!--  <p> <img src="/static/mappa_arancio.jpg" width="250"/> </p>-->
-            </center>
-        </div>
     </body>
     <!--developer Paolino Iorio-->
 </html>
